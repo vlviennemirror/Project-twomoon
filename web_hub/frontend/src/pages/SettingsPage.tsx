@@ -136,8 +136,8 @@ export default function SettingsPage() {
       try {
         const res = await api.get<{ bots: BotSummary[] }>("/api/config/bots");
         setBots(res.data.bots);
-        if (res.data.bots.length > 0 && !selectedBotId) {
-          setSelectedBotId(res.data.bots[0].bot_id);
+        if (res.data.bots.length > 0) {
+          setSelectedBotId((prev) => prev ?? res.data.bots[0].bot_id);
         }
       } catch {
         setToast({ message: "Failed to load bot list", type: "error" });

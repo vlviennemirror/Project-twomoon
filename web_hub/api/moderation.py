@@ -4,11 +4,15 @@ from typing import Any
 from fastapi import APIRouter, Depends, Query
 
 from shared_lib import database
+from shared_lib import redis_ipc
 from web_hub.api.auth import require_clearance
 
 logger = logging.getLogger("twomoon.api.moderation")
 
 router = APIRouter(prefix="/api/moderation", tags=["Moderation"])
+
+_STRIKES_COUNT_CACHE_KEY = "cache:moderation:total_strikes"
+_STRIKES_COUNT_CACHE_TTL = 30
 
 
 @router.get("/metrics")
@@ -44,9 +48,21 @@ async def get_strikes(
 ) -> dict:
     offset = (page - 1) * page_size
 
-    total = await database.fetchval(
-        "SELECT COUNT(*) FROM moderation_strikes"
-    )
+    total: int = 0
+    try:
+        cached_total = await redis_ipc.cache_get(_STRIKES_COUNT_CACHE_KEY)
+        if cached_total is not None:
+            total = int(cached_total)
+        else:
+            raw_total = await database.fetchval("SELECT COUNT(*) FROM moderation_strikes")
+            total = int(raw_total or 0)
+            await redis_ipc.cache_set(
+                _STRIKES_COUNT_CACHE_KEY, str(total), ttl_seconds=_STRIKES_COUNT_CACHE_TTL
+            )
+    except Exception as e:
+        logger.warning("Strike count cache error: %s — falling back to live query", e)
+        raw_total = await database.fetchval("SELECT COUNT(*) FROM moderation_strikes")
+        total = int(raw_total or 0)
 
     rows = await database.fetch(
         "SELECT "
@@ -110,7 +126,7 @@ async def get_strike_detail(
         "SELECT "
         "  ms.id, ms.guild_id, ms.user_id, ms.moderator_id, "
         "  ms.tier, ms.reason, ms.confidence, ms.source, "
-        "  ms.message_content, ms.action_taken, ms.created_at "
+        "  ms.message_content, ms.created_at "
         "FROM moderation_strikes ms "
         "WHERE ms.id = $1",
         strike_id,
@@ -138,7 +154,7 @@ async def get_strike_detail(
         "confidence": float(row["confidence"]) if row["confidence"] is not None else None,
         "source": row["source"] or "REGEX",
         "message_content": row["message_content"] if user.get("clearance") in ("owner", "admin") else "[REDACTED]",
-        "action_taken": row["action_taken"],
+        "action_taken": row["tier"],
         "created_at": row["created_at"].isoformat() if row["created_at"] else "",
     }
 

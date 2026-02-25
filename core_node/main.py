@@ -4,7 +4,6 @@ import logging
 import os
 import signal
 import sys
-from base64 import urlsafe_b64decode, urlsafe_b64encode
 from pathlib import Path
 from typing import Any, Optional
 
@@ -16,6 +15,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from shared_lib import database
 from shared_lib import redis_ipc
+from shared_lib.encryption import decrypt_token
 
 uvloop.install()
 
@@ -58,23 +58,6 @@ COG_REGISTRY: dict[str, list[str]] = {
         "core_node.cogs.chatbot",
     ],
 }
-
-
-def decrypt_token(cipher_text: str, master_key: str) -> str:
-    
-    from cryptography.fernet import Fernet, InvalidToken
-    key_bytes = master_key.encode("utf-8")
-    
-    if len(key_bytes) != 44:
-        key_bytes = urlsafe_b64encode(key_bytes.ljust(32, b"\0")[:32])
-
-    f = Fernet(key_bytes)
-
-    try:
-        return f.decrypt(cipher_text.encode("utf-8")).decode("utf-8")
-    except InvalidToken:
-        logger.critical("Master key mismatch or token tampered. Shutting down.")
-        sys.exit(1)
 
 
 class CoreNode(commands.Bot):
@@ -166,7 +149,9 @@ class CoreNode(commands.Bot):
             )
         else:
             self.config_cache = {}
-            logger.warning("No config row found for bot_id=%s, running with defaults", self.bot_id)
+            logger.warning(
+                "No config row found for bot_id=%s, running with defaults", self.bot_id
+            )
 
         guild_row = await database.fetchrow(
             "SELECT * FROM guild_settings WHERE guild_id = $1",
@@ -189,7 +174,9 @@ class CoreNode(commands.Bot):
             self.guild_id,
         )
         self.moderation_rules_cache = [dict(r) for r in rows]
-        logger.info("Moderation rules hydrated: %d active rules", len(self.moderation_rules_cache))
+        logger.info(
+            "Moderation rules hydrated: %d active rules", len(self.moderation_rules_cache)
+        )
 
     async def _start_ipc_listener(self) -> None:
         config_channel = redis_ipc.build_config_channel(self.bot_id)
@@ -202,7 +189,9 @@ class CoreNode(commands.Bot):
         logger.info("IPC listeners active")
 
     async def _on_ipc_event(self, event_type: str, payload: dict) -> None:
-        logger.info("IPC event received: [%s] payload_keys=%s", event_type, list(payload.keys()))
+        logger.info(
+            "IPC event received: [%s] payload_keys=%s", event_type, list(payload.keys())
+        )
 
         if event_type == "CONFIG_INVALIDATION":
             old_config = self.config_cache.copy()
@@ -304,7 +293,7 @@ async def async_main() -> None:
     configure_logging(bot_id)
     logger.info("Bootstrapping Core Node for bot_id=%s", bot_id)
 
-    pool = await database.get_pool()
+    await database.get_pool()
 
     row = await database.fetchrow(
         "SELECT token_cipher, is_active FROM bots WHERE bot_id = $1",
@@ -327,7 +316,13 @@ async def async_main() -> None:
         await database.close_pool()
         sys.exit(1)
 
-    token = decrypt_token(row["token_cipher"], master_key)
+    try:
+        token = decrypt_token(row["token_cipher"], master_key)
+    except ValueError as e:
+        logger.critical("FATAL: Token decryption failed for bot_id=%s: %s", bot_id, e)
+        await database.close_pool()
+        sys.exit(1)
+
     logger.info("Token decrypted successfully for bot_id=%s", bot_id)
 
     bot = CoreNode(bot_id=bot_id)
@@ -336,7 +331,7 @@ async def async_main() -> None:
 
     def _signal_handler(sig: signal.Signals) -> None:
         logger.info("Received signal %s, initiating graceful shutdown", sig.name)
-        asyncio.ensure_future(bot.close())
+        loop.create_task(bot.close(), name="graceful-shutdown")
 
     for sig in (signal.SIGTERM, signal.SIGINT):
         loop.add_signal_handler(sig, _signal_handler, sig)
@@ -348,7 +343,9 @@ async def async_main() -> None:
         logger.critical("FATAL: Discord rejected the bot token for bot_id=%s", bot_id)
         sys.exit(1)
     except Exception as e:
-        logger.critical("FATAL: Unhandled exception during bot lifecycle: %s", e, exc_info=True)
+        logger.critical(
+            "FATAL: Unhandled exception during bot lifecycle: %s", e, exc_info=True
+        )
         sys.exit(1)
     finally:
         if not bot.is_closed():

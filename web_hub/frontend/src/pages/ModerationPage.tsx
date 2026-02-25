@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useAuth } from "@/context/AuthContext";
 import GlassCard from "@/components/GlassCard";
 import api from "@/lib/api";
@@ -106,30 +106,59 @@ export default function ModerationPage() {
 
   const pageSize = 15;
 
+  const metricsAbortRef = useRef<AbortController | null>(null);
+  const strikesAbortRef = useRef<AbortController | null>(null);
+  const isMountedRef = useRef(true);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+      metricsAbortRef.current?.abort();
+      strikesAbortRef.current?.abort();
+    };
+  }, []);
+
   const fetchMetrics = useCallback(async () => {
+    metricsAbortRef.current?.abort();
+    const controller = new AbortController();
+    metricsAbortRef.current = controller;
+
     try {
-      const res = await api.get<ModerationMetrics>("/api/moderation/metrics");
+      const res = await api.get<ModerationMetrics>("/api/moderation/metrics", {
+        signal: controller.signal,
+      });
+      if (!isMountedRef.current) return;
       setMetrics(res.data);
-    } catch {
-      /* retain defaults */
+    } catch (err: unknown) {
+      if (err instanceof Error && (err as { name: string }).name === "CanceledError") return;
     } finally {
-      setIsLoadingMetrics(false);
+      if (isMountedRef.current) setIsLoadingMetrics(false);
     }
   }, []);
 
   const fetchStrikes = useCallback(async (p: number) => {
+    strikesAbortRef.current?.abort();
+    const controller = new AbortController();
+    strikesAbortRef.current = controller;
+
     setIsLoadingStrikes(true);
     try {
       const res = await api.get<StrikesResponse>("/api/moderation/strikes", {
         params: { page: p, page_size: pageSize },
+        signal: controller.signal,
       });
+      if (!isMountedRef.current) return;
       setStrikes(res.data.strikes);
       setTotalStrikes(res.data.total);
-    } catch {
-      setStrikes([]);
-      setTotalStrikes(0);
+    } catch (err: unknown) {
+      if (err instanceof Error && (err as { name: string }).name === "CanceledError") return;
+      if (isMountedRef.current) {
+        setStrikes([]);
+        setTotalStrikes(0);
+      }
     } finally {
-      setIsLoadingStrikes(false);
+      if (isMountedRef.current) setIsLoadingStrikes(false);
     }
   }, []);
 

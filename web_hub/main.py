@@ -1,4 +1,3 @@
-import json
 import logging
 import os
 import sys
@@ -15,6 +14,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from shared_lib import database
 from shared_lib import redis_ipc
 from web_hub.services import fleet_publisher
+from web_hub.services.audit import record_audit
 from web_hub.api.auth import router as auth_router, require_clearance
 
 from web_hub.api.config import router as api_config_router
@@ -38,7 +38,9 @@ logger = logging.getLogger("twomoon.web_hub")
 
 CORS_ORIGINS = [
     o.strip()
-    for o in os.environ.get("CORS_ORIGINS", "http://localhost:3000,http://localhost:5173").split(",")
+    for o in os.environ.get(
+        "CORS_ORIGINS", "http://localhost:3000,http://localhost:5173"
+    ).split(",")
     if o.strip()
 ]
 
@@ -70,7 +72,9 @@ async def lifespan(app: FastAPI):
     if agent_health.get("agent_online"):
         logger.info("AlmaLinux agent detected (online)")
     else:
-        logger.warning("AlmaLinux agent NOT detected — fleet commands will queue in DB")
+        logger.warning(
+            "AlmaLinux agent NOT detected — fleet commands will queue in DB"
+        )
 
     logger.info("=== Two Moon Web Hub — ONLINE ===")
 
@@ -180,7 +184,9 @@ async def restart_bot(
     user: dict[str, Any] = require_clearance("owner", "admin"),
 ) -> dict:
     try:
-        result = await fleet_publisher.restart_bot(bot_id, requested_by=user.get("sub"))
+        result = await fleet_publisher.restart_bot(
+            bot_id, requested_by=user.get("sub")
+        )
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
 
@@ -189,71 +195,6 @@ async def restart_bot(
 
 
 app.include_router(fleet_router)
-
-
-config_router = APIRouter(prefix="/api/config", tags=["Configuration"])
-
-
-@config_router.post("/{bot_id}/invalidate")
-async def invalidate_config(
-    bot_id: str,
-    user: dict[str, Any] = require_clearance("owner", "admin"),
-) -> dict:
-    subscriber_count = await redis_ipc.publish_event(
-        redis_ipc.build_config_channel(bot_id),
-        "CONFIG_INVALIDATION",
-        {"triggered_by": user.get("sub"), "scope": "full"},
-    )
-
-    await _record_audit(user, "CONFIG_INVALIDATE", "bot_config", bot_id)
-
-    return {
-        "status": "published",
-        "channel": redis_ipc.build_config_channel(bot_id),
-        "subscribers_notified": subscriber_count,
-    }
-
-
-@config_router.post("/{bot_id}/rules/invalidate")
-async def invalidate_rules(
-    bot_id: str,
-    user: dict[str, Any] = require_clearance("owner", "admin"),
-) -> dict:
-    subscriber_count = await redis_ipc.publish_event(
-        redis_ipc.build_config_channel(bot_id),
-        "RULES_INVALIDATION",
-        {"triggered_by": user.get("sub")},
-    )
-
-    await _record_audit(user, "RULES_INVALIDATE", "moderation_rules", bot_id)
-
-    return {
-        "status": "published",
-        "subscribers_notified": subscriber_count,
-    }
-
-
-@config_router.post("/guild/{guild_id}/settings/invalidate")
-async def invalidate_guild_settings(
-    guild_id: str,
-    user: dict[str, Any] = require_clearance("owner", "admin"),
-) -> dict:
-    subscriber_count = await redis_ipc.publish_event(
-        redis_ipc.build_guild_channel(guild_id, "settings"),
-        "GUILD_SETTINGS_INVALIDATION",
-        {"triggered_by": user.get("sub")},
-    )
-
-    await _record_audit(user, "GUILD_SETTINGS_INVALIDATE", "guild_settings", guild_id)
-
-    return {
-        "status": "published",
-        "subscribers_notified": subscriber_count,
-    }
-
-
-app.include_router(config_router)
-
 
 @app.get("/health")
 async def health_check() -> dict:
@@ -273,7 +214,6 @@ async def health_check() -> dict:
 
     try:
         agent = await fleet_publisher.get_agent_health()
-        # normalize to dict at minimum
         if not isinstance(agent, dict):
             agent = {"agent_online": False}
     except Exception as e:
@@ -289,12 +229,10 @@ async def health_check() -> dict:
         fleet = []
 
     alive_count = sum(1 for b in fleet if b.get("status") == "RUNNING")
-
     all_healthy = db_ok and redis_ok and agent.get("agent_online", False)
-    status = "healthy" if all_healthy else "degraded"
 
     return {
-        "status": status,
+        "status": "healthy" if all_healthy else "degraded",
         "services": {
             "cockroachdb": "up" if db_ok else "down",
             "redis": "up" if redis_ok else "down",
@@ -306,54 +244,21 @@ async def health_check() -> dict:
         },
     }
 
-
-async def _record_audit(
-    user: dict[str, Any],
-    action: str,
-    target_type: str,
-    target_id: str,
-) -> None:
-    details_dict = {
-        "clearance": user.get("clearance", "unknown"),
-        "username": user.get("username", "unknown"),
-    }
-
-    try:
-        details_json = json.dumps(details_dict, ensure_ascii=False)
-    except (TypeError, ValueError):
-        safe_details = {
-            "clearance": str(details_dict.get("clearance", "unknown")),
-            "username": str(details_dict.get("username", "unknown")),
-        }
-        details_json = json.dumps(safe_details, ensure_ascii=False)
-
-    MAX_DETAILS_LEN = 2000
-    if len(details_json) > MAX_DETAILS_LEN:
-        details_json = details_json[:MAX_DETAILS_LEN]
-
-    try:
-        await database.execute(
-            "INSERT INTO audit_log (actor_id, action, target_type, target_id, details) "
-            "VALUES ($1, $2, $3, $4, $5::jsonb)",
-            user.get("sub", "unknown"),
-            action,
-            target_type,
-            target_id,
-            details_json,
-        )
-    except Exception as e:
-        logger.error("Audit log write failed: %s", e)
-
+_record_audit = record_audit
 
 if SPA_DIST_DIR.is_dir():
     from fastapi.responses import FileResponse
 
-    @app.get("/{full_path:path}")
-    async def serve_spa(full_path: str):
+    app.mount(
+        "/assets",
+        StaticFiles(directory=SPA_DIST_DIR / "assets"),
+        name="static-assets",
+    )
+    logger.info("SPA static files mounted from %s", SPA_DIST_DIR)
+
+    @app.get("/{full_path:path}", include_in_schema=False)
+    async def serve_spa(full_path: str) -> FileResponse:
         file_path = SPA_DIST_DIR / full_path
         if file_path.is_file():
             return FileResponse(file_path)
         return FileResponse(SPA_DIST_DIR / "index.html")
-
-    app.mount("/assets", StaticFiles(directory=SPA_DIST_DIR / "assets"), name="static-assets")
-    logger.info("SPA static files mounted from %s", SPA_DIST_DIR)

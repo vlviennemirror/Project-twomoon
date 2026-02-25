@@ -1,13 +1,3 @@
--- ============================================================================
--- TWO MOON ECOSYSTEM — COCKROACHDB / POSTGRESQL MASTER SCHEMA
--- Version: 1.0.0
--- Compatibility: CockroachDB Serverless >= 23.1 / PostgreSQL >= 15
--- ============================================================================
-
--- ============================================================================
--- DOMAIN 1: HOLLOW ENGINE — FLEET REGISTRY & DYNAMIC CONFIGURATION
--- ============================================================================
-
 CREATE TABLE IF NOT EXISTS bots (
     bot_id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     guild_id            VARCHAR(20) NOT NULL,
@@ -62,13 +52,16 @@ CREATE INDEX IF NOT EXISTS idx_mod_rules_active
     WHERE is_enabled = TRUE;
 
 CREATE TABLE IF NOT EXISTS moderation_strikes (
-    strike_id           UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id                  UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     guild_id            VARCHAR(20) NOT NULL,
     user_id             VARCHAR(20) NOT NULL,
     rule_id             UUID REFERENCES moderation_rules (rule_id) ON DELETE SET NULL,
-    moderator_type      VARCHAR(16) NOT NULL DEFAULT 'AI',
-    action_taken        VARCHAR(16) NOT NULL,
+    moderator_id        VARCHAR(20),
+    source              VARCHAR(16) NOT NULL DEFAULT 'AI',
+    tier                VARCHAR(16) NOT NULL,
     reason              TEXT,
+    confidence          NUMERIC(5, 4),
+    message_content     TEXT,
     expires_at          TIMESTAMPTZ,
     created_at          TIMESTAMPTZ NOT NULL DEFAULT now()
 );
@@ -80,9 +73,9 @@ CREATE INDEX IF NOT EXISTS idx_strikes_expiry
     ON moderation_strikes (expires_at)
     WHERE expires_at IS NOT NULL;
 
--- ============================================================================
--- DOMAIN 2: GUILD SETTINGS — PER-SERVER LEVELING CONFIGURATION
--- ============================================================================
+CREATE INDEX IF NOT EXISTS idx_strikes_ai_source
+    ON moderation_strikes (source, confidence)
+    WHERE source = 'AI';
 
 CREATE TABLE IF NOT EXISTS guild_settings (
     guild_id            VARCHAR(20) PRIMARY KEY,
@@ -102,10 +95,6 @@ CREATE TABLE IF NOT EXISTS guild_settings (
     created_at          TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at          TIMESTAMPTZ NOT NULL DEFAULT now()
 );
-
--- ============================================================================
--- DOMAIN 3: TWO PATHS — FACTION SYSTEM
--- ============================================================================
 
 CREATE TABLE IF NOT EXISTS faction_config (
     guild_id            VARCHAR(20) NOT NULL,
@@ -134,10 +123,6 @@ CREATE TABLE IF NOT EXISTS user_factions (
 
 CREATE INDEX IF NOT EXISTS idx_user_factions_status
     ON user_factions (guild_id, faction, faction_status);
-
--- ============================================================================
--- DOMAIN 4: LEVELING ENGINE — XP, LEVELS, REWARDS
--- ============================================================================
 
 CREATE TABLE IF NOT EXISTS user_levels (
     guild_id            VARCHAR(20) NOT NULL,
@@ -206,20 +191,17 @@ CREATE TABLE IF NOT EXISTS voice_sessions (
     PRIMARY KEY (guild_id, user_id)
 );
 
--- ============================================================================
--- DOMAIN 5: VOUCH SYSTEM
--- ============================================================================
-
 CREATE TABLE IF NOT EXISTS vouch_codes (
     code                VARCHAR(32) PRIMARY KEY,
     guild_id            VARCHAR(20) NOT NULL,
-    role_id             VARCHAR(20) NOT NULL,
+    role_id             VARCHAR(20),
     creator_id          VARCHAR(20) NOT NULL,
     rep_value           INT NOT NULL DEFAULT 0,
     status              VARCHAR(12) NOT NULL DEFAULT 'ACTIVE',
     used_by             VARCHAR(20),
     created_at          TIMESTAMPTZ NOT NULL DEFAULT now(),
-    used_at             TIMESTAMPTZ
+    used_at             TIMESTAMPTZ,
+    expires_at          TIMESTAMPTZ
 );
 
 CREATE INDEX IF NOT EXISTS idx_vouch_creator
@@ -232,6 +214,7 @@ CREATE INDEX IF NOT EXISTS idx_vouch_status
 CREATE TABLE IF NOT EXISTS user_profiles (
     guild_id            VARCHAR(20) NOT NULL,
     user_id             VARCHAR(20) NOT NULL,
+    display_name        VARCHAR(100),
     reputation          INT NOT NULL DEFAULT 0,
     voucher_id          VARCHAR(20),
     first_redeemed_at   TIMESTAMPTZ,
@@ -240,13 +223,9 @@ CREATE TABLE IF NOT EXISTS user_profiles (
     PRIMARY KEY (guild_id, user_id)
 );
 
--- ============================================================================
--- DOMAIN 6: WEB HUB — AUDIT LOG
--- ============================================================================
-
 CREATE TABLE IF NOT EXISTS audit_log (
     log_id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    guild_id            VARCHAR(20) NOT NULL,
+    guild_id            VARCHAR(20),
     actor_id            VARCHAR(20) NOT NULL,
     action              VARCHAR(64) NOT NULL,
     target_type         VARCHAR(32),
@@ -256,4 +235,8 @@ CREATE TABLE IF NOT EXISTS audit_log (
 );
 
 CREATE INDEX IF NOT EXISTS idx_audit_log_guild_time
-    ON audit_log (guild_id, created_at DESC);
+    ON audit_log (guild_id, created_at DESC)
+    WHERE guild_id IS NOT NULL;
+
+CREATE INDEX IF NOT EXISTS idx_audit_log_time
+    ON audit_log (created_at DESC);

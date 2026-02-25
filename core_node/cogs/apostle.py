@@ -282,27 +282,32 @@ class ApostleCog(commands.Cog, name="Apostle"):
         guild_id: str,
         user_id: str,
         rule_id: Optional[str],
-        action: str,
+        tier: str,
         reason: str,
         duration_sec: int = 86400,
+        confidence: Optional[float] = None,
+        message_content: Optional[str] = None,
+        source: str = "AI",
     ) -> None:
         expires_at = None
         if duration_sec > 0:
             expires_at = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(
                 seconds=duration_sec
             )
-
         try:
             await database.execute(
                 "INSERT INTO moderation_strikes "
-                "(guild_id, user_id, rule_id, moderator_type, action_taken, reason, expires_at) "
-                "VALUES ($1, $2, $3, $4, $5, $6, $7)",
+                "(guild_id, user_id, rule_id, source, tier, reason, "
+                " confidence, message_content, expires_at) "
+                "VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
                 guild_id,
                 user_id,
                 rule_id,
-                "AI",
-                action,
+                source,
+                tier,
                 reason,
+                confidence,
+                message_content[:2000] if message_content else None,
                 expires_at,
             )
         except Exception as e:
@@ -315,6 +320,8 @@ class ApostleCog(commands.Cog, name="Apostle"):
         reason: str,
         rule_id: Optional[str] = None,
         strike_duration: int = 86400,
+        confidence: Optional[float] = None,
+        source: str = "AI",
     ) -> None:
         guild_id = str(message.guild.id)
         user_id = str(message.author.id)
@@ -327,7 +334,17 @@ class ApostleCog(commands.Cog, name="Apostle"):
         except (discord.Forbidden, discord.HTTPException) as e:
             logger.warning("Failed to delete message %s: %s", message.id, e)
 
-        await self._record_strike(guild_id, user_id, rule_id, tier, reason, strike_duration)
+        await self._record_strike(
+            guild_id,
+            user_id,
+            rule_id,
+            tier=tier,
+            reason=reason,
+            duration_sec=strike_duration,
+            confidence=confidence,
+            message_content=message.content if message.content else None,
+            source=source,
+        )
         self._total_caught += 1
 
         timeout_delta = PUNISHMENT_TIMEOUT_DURATION.get(tier)
@@ -429,6 +446,7 @@ class ApostleCog(commands.Cog, name="Apostle"):
                 reason=f"Matched rule: {matched_rule.rule_name}",
                 rule_id=matched_rule.rule_id,
                 strike_duration=matched_rule.strike_duration,
+                source="REGEX",
             )
             return
 
@@ -441,8 +459,13 @@ class ApostleCog(commands.Cog, name="Apostle"):
         if self._circuit_should_skip():
             return
 
-        if self._semaphore.locked():
-            logger.debug("AI semaphore saturated, skipping AI for msg %s", message.id)
+        if self._semaphore._value <= 0:
+            logger.debug(
+                "AI semaphore saturated (%d/%d slots occupied), shedding msg %s",
+                self.MAX_CONCURRENT_AI,
+                self.MAX_CONCURRENT_AI,
+                message.id,
+            )
             return
 
         async with self._semaphore:
@@ -466,6 +489,8 @@ class ApostleCog(commands.Cog, name="Apostle"):
             tier=tier,
             reason=f"[AI] {reason}",
             rule_id=None,
+            confidence=confidence,
+            source="AI",
         )
 
     @commands.Cog.listener()
@@ -484,14 +509,17 @@ class ApostleCog(commands.Cog, name="Apostle"):
         if guild_id and str(message.guild.id) != guild_id:
             return
 
-        self.bot.loop.create_task(
+        asyncio.create_task(
             self._analyze_message(message),
             name=f"apostle-{message.id}",
         )
 
     @commands.Cog.listener("on_config_reloaded")
     async def on_config_reloaded(self, old_config: dict, new_config: dict) -> None:
-        logger.info("Config reloaded, Apostle refreshing AI parameters")
+        logger.debug(
+            "Config reloaded event received by Apostle — "
+            "AI parameters are read dynamically; no explicit refresh required."
+        )
 
     @commands.Cog.listener("on_rules_reloaded")
     async def on_rules_reloaded(self, old_rules: list, new_rules: list) -> None:

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import GlassCard from "@/components/GlassCard";
 import api from "@/lib/api";
 import {
@@ -69,18 +69,40 @@ export default function LeaderboardPage() {
   const [data, setData] = useState<LeaderboardResponse | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  const abortRef = useRef<AbortController | null>(null);
+  const isMountedRef = useRef(true);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+      abortRef.current?.abort();
+    };
+  }, []);
+
   const fetchLeaderboard = useCallback(async (f: Faction) => {
+    abortRef.current?.abort();
+    const controller = new AbortController();
+    abortRef.current = controller;
+
     setIsLoading(true);
     try {
       const res = await api.get<LeaderboardResponse>(
         `/api/leaderboard/${f}`,
-        { params: { limit: 10 } },
+        {
+          params: { limit: 10 },
+          signal: controller.signal,
+        },
       );
+      if (!isMountedRef.current) return;
       setData(res.data);
-    } catch {
-      setData({ faction: f, entries: [], total_members: 0 });
+    } catch (err: unknown) {
+      if (err instanceof Error && (err as { name: string }).name === "CanceledError") return;
+      if (isMountedRef.current) {
+        setData({ faction: f, entries: [], total_members: 0 });
+      }
     } finally {
-      setIsLoading(false);
+      if (isMountedRef.current) setIsLoading(false);
     }
   }, []);
 

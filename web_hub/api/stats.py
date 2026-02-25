@@ -32,9 +32,8 @@ async def get_overview(
     )
 
     strike_row = await database.fetchrow(
-        "SELECT COUNT(*)                                           AS total_strikes, "
-        "       COALESCE(AVG(CASE WHEN moderator_type = 'AI' "
-        "                         THEN NULL END), 0)              AS avg_ai_confidence "
+        "SELECT COUNT(*)                                                   AS total_strikes, "
+        "       COALESCE(AVG(confidence) FILTER (WHERE source = 'AI'), 0) AS avg_ai_confidence "
         "FROM moderation_strikes"
     )
 

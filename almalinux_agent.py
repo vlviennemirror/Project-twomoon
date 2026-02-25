@@ -167,6 +167,8 @@ async def _monitor_and_reap(bot_id: str, proc: asyncio.subprocess.Process) -> No
                     except asyncio.CancelledError:
                         pass
 
+        final_status: str = BotStatus.EXITED.value
+
         async with _registry_lock:
             entry = PROCESS_REGISTRY.get(bot_id)
             if entry:
@@ -179,13 +181,18 @@ async def _monitor_and_reap(bot_id: str, proc: asyncio.subprocess.Process) -> No
                     entry.status = BotStatus.CRASHED
 
                 uptime = time.time() - entry.spawned_at
+                final_status = entry.status.value
 
                 logger.info(
                     "Bot reaped: %s pid=%d exit=%d status=%s uptime=%.0fs",
                     bot_id[:8], entry.pid, exit_code, entry.status.value, uptime,
                 )
-
-                final_status = entry.status.value
+            else:
+                logger.warning(
+                    "Bot reaped but no registry entry found: %s pid=%d exit=%d — "
+                    "publishing EXITED as safe fallback",
+                    bot_id[:8], proc.pid, exit_code,
+                )
 
             PROCESS_REGISTRY.pop(bot_id, None)
 

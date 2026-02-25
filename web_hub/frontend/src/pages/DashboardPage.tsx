@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useAuth } from "@/context/AuthContext";
 import GlassCard from "@/components/GlassCard";
 import api from "@/lib/api";
@@ -79,13 +79,28 @@ export default function DashboardPage() {
   const [metrics, setMetrics] = useState<Metrics>(EMPTY_METRICS);
   const [isLoading, setIsLoading] = useState(true);
 
+  const abortRef = useRef<AbortController | null>(null);
+  const isMountedRef = useRef(true);
+
   useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+      abortRef.current?.abort();
+    };
+  }, []);
+
+  useEffect(() => {
+    abortRef.current?.abort();
+    const controller = new AbortController();
+    abortRef.current = controller;
+
     (async () => {
       try {
         const healthRes = await api.get<{
           fleet: FleetSummary;
           services: { agent: AgentSummary };
-        }>("/health");
+        }>("/health", { signal: controller.signal });
 
         let totalUsers = 0;
         let totalVouched = 0;
@@ -102,22 +117,18 @@ export default function DashboardPage() {
             total_xp_processed: number;
             avg_ai_confidence: number;
             active_today: number;
-          }>("/api/stats/overview");
+          }>("/api/stats/overview", { signal: controller.signal });
           totalUsers = statsRes.data.total_users;
           totalVouched = statsRes.data.total_vouched;
           totalStrikes = statsRes.data.total_strikes;
           totalXp = statsRes.data.total_xp_processed;
           avgConfidence = statsRes.data.avg_ai_confidence;
           activeToday = statsRes.data.active_today;
-        } catch {
-          totalUsers = 0;
-          totalVouched = 0;
-          totalStrikes = 0;
-          totalXp = 0;
-          avgConfidence = 0;
-          activeToday = 0;
+        } catch (err: unknown) {
+          if (err instanceof Error && (err as { name: string }).name === "CanceledError") return;
         }
 
+        if (!isMountedRef.current) return;
         setMetrics({
           fleet: healthRes.data.fleet,
           agent: healthRes.data.services?.agent ?? { agent_online: false },
@@ -128,10 +139,11 @@ export default function DashboardPage() {
           avg_ai_confidence: avgConfidence,
           active_today: activeToday,
         });
-      } catch {
-        setMetrics(EMPTY_METRICS);
+      } catch (err: unknown) {
+        if (err instanceof Error && (err as { name: string }).name === "CanceledError") return;
+        if (isMountedRef.current) setMetrics(EMPTY_METRICS);
       } finally {
-        setIsLoading(false);
+        if (isMountedRef.current) setIsLoading(false);
       }
     })();
   }, []);

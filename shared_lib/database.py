@@ -112,38 +112,6 @@ async def transaction():
             yield conn
 
 
-async def batch_upsert_xp(records: list[tuple[str, str, str, int, int, int]]) -> None:
-    if not records:
-        return
-    pool = await get_pool()
-    query = """
-        INSERT INTO user_levels (guild_id, user_id, faction, xp, total_messages, level)
-        VALUES ($1, $2, $3, $4, $5, $6)
-        ON CONFLICT (guild_id, user_id, faction)
-        DO UPDATE SET
-            xp = user_levels.xp + EXCLUDED.xp,
-            total_messages = user_levels.total_messages + EXCLUDED.total_messages,
-            level = GREATEST(user_levels.level, EXCLUDED.level),
-            updated_at = now()
-    """
-    for attempt in range(MAX_RETRIES):
-        try:
-            async with pool.acquire() as conn:
-                await conn.executemany(query, records)
-            logger.info("Batch upsert committed: %d user records", len(records))
-            return
-        except asyncpg.SerializationError:
-            if attempt == MAX_RETRIES - 1:
-                raise
-            delay = RETRY_BASE_DELAY * (2 ** attempt)
-            logger.warning(
-                "Batch upsert serialization conflict (attempt %d/%d)",
-                attempt + 1,
-                MAX_RETRIES,
-            )
-            await asyncio.sleep(delay)
-
-
 async def apply_schema(schema_path: str) -> None:
     pool = await get_pool()
     with open(schema_path, "r") as f:

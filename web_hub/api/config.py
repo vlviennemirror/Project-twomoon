@@ -1,17 +1,17 @@
-import json
 import logging
 from typing import Any, Optional
 
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel, Field
 
 from shared_lib import database
 from shared_lib import redis_ipc
 from web_hub.api.auth import require_clearance
+from web_hub.services.audit import record_audit
 
 logger = logging.getLogger("twomoon.api.config")
 
-router = APIRouter(prefix="/api/config", tags=["Configuration CRUD"])
+router = APIRouter(prefix="/api/config", tags=["Configuration"])
 
 
 class BotConfigResponse(BaseModel):
@@ -83,11 +83,7 @@ _ALLOWED_GUILD_FIELDS = {
     "feature_overrides",
 }
 
-_MAX_DETAILS_LEN = 2000
-
-
 def _serialize_json_field(value: dict[str, Any]) -> str:
-    """Serialize JSON field safely and deterministically."""
     try:
         return json.dumps(value, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
     except (TypeError, ValueError):
@@ -96,7 +92,6 @@ def _serialize_json_field(value: dict[str, Any]) -> str:
 
 
 async def _safe_publish(channel: str, event: str, payload: dict[str, Any]) -> int:
-    """Publish to redis but never fail the main flow; log and return 0 subscribers on error."""
     try:
         return await redis_ipc.publish_event(channel, event, payload)
     except Exception as e:
@@ -104,41 +99,7 @@ async def _safe_publish(channel: str, event: str, payload: dict[str, Any]) -> in
         return 0
 
 
-async def _record_audit(
-    user: dict[str, Any],
-    action: str,
-    target_type: str,
-    target_id: str,
-    extra: Optional[dict] = None,
-) -> None:
-    details = {
-        "clearance": user.get("clearance", "unknown"),
-        "username": user.get("username", "unknown"),
-    }
-    if extra:
-        details.update(extra)
-
-    try:
-        details_json = json.dumps(details, ensure_ascii=False)
-    except (TypeError, ValueError):
-        safe = {k: str(v) for k, v in details.items()}
-        details_json = json.dumps(safe, ensure_ascii=False)
-
-    if len(details_json) > _MAX_DETAILS_LEN:
-        details_json = details_json[:_MAX_DETAILS_LEN]
-
-    try:
-        await database.execute(
-            "INSERT INTO audit_log (actor_id, action, target_type, target_id, details) "
-            "VALUES ($1, $2, $3, $4, $5::jsonb)",
-            user.get("sub", "unknown"),
-            action,
-            target_type,
-            target_id,
-            details_json,
-        )
-    except Exception as e:
-        logger.error("Audit log write failed: %s", e)
+_record_audit = record_audit
 
 
 @router.get("/bot/{bot_id}", response_model=BotConfigResponse)
@@ -195,7 +156,9 @@ async def update_bot_config(
 
     invalid = [f for f in updates.keys() if f not in _ALLOWED_BOT_FIELDS]
     if invalid:
-        raise HTTPException(status_code=400, detail=f"Invalid fields in update: {invalid}")
+        raise HTTPException(
+            status_code=400, detail=f"Invalid fields in update: {invalid}"
+        )
 
     set_clauses = []
     params: list[Any] = []
@@ -313,7 +276,9 @@ async def update_guild_settings(
 
     invalid = [f for f in updates.keys() if f not in _ALLOWED_GUILD_FIELDS]
     if invalid:
-        raise HTTPException(status_code=400, detail=f"Invalid fields in update: {invalid}")
+        raise HTTPException(
+            status_code=400, detail=f"Invalid fields in update: {invalid}"
+        )
 
     set_clauses = []
     params: list[Any] = []
@@ -388,15 +353,77 @@ async def list_configurable_bots(
         logger.error("DB error listing bots: %s", e)
         raise HTTPException(status_code=500, detail="Database error")
 
-    bots = []
-    for r in rows:
-        bots.append({
-            "bot_id": str(r["bot_id"]),
-            "bot_type": r.get("bot_type"),
-            "guild_id": str(r["guild_id"]) if r.get("guild_id") else None,
-            "is_active": bool(r.get("is_active")),
-            "ai_model_id": r.get("ai_model_id"),
-            "feature_flags": r.get("feature_flags") or {},
-        })
+    return {
+        "bots": [
+            {
+                "bot_id": str(r["bot_id"]),
+                "bot_type": r.get("bot_type"),
+                "guild_id": str(r["guild_id"]) if r.get("guild_id") else None,
+                "is_active": bool(r.get("is_active")),
+                "ai_model_id": r.get("ai_model_id"),
+                "feature_flags": r.get("feature_flags") or {},
+            }
+            for r in rows
+        ]
+    }
 
-    return {"bots": bots}
+
+@router.post("/{bot_id}/invalidate")
+async def invalidate_config(
+    bot_id: str,
+    user: dict[str, Any] = require_clearance("owner", "admin"),
+) -> dict:
+    """Force the bot to hot-reload its full config from CockroachDB immediately."""
+    subscriber_count = await _safe_publish(
+        redis_ipc.build_config_channel(bot_id),
+        "CONFIG_INVALIDATION",
+        {"triggered_by": user.get("sub"), "scope": "full"},
+    )
+
+    await _record_audit(user, "CONFIG_INVALIDATE", "bot_config", bot_id)
+
+    return {
+        "status": "published",
+        "channel": redis_ipc.build_config_channel(bot_id),
+        "subscribers_notified": subscriber_count,
+    }
+
+
+@router.post("/{bot_id}/rules/invalidate")
+async def invalidate_rules(
+    bot_id: str,
+    user: dict[str, Any] = require_clearance("owner", "admin"),
+) -> dict:
+    """Force the bot to hot-reload moderation rules from CockroachDB immediately."""
+    subscriber_count = await _safe_publish(
+        redis_ipc.build_config_channel(bot_id),
+        "RULES_INVALIDATION",
+        {"triggered_by": user.get("sub")},
+    )
+
+    await _record_audit(user, "RULES_INVALIDATE", "moderation_rules", bot_id)
+
+    return {
+        "status": "published",
+        "subscribers_notified": subscriber_count,
+    }
+
+
+@router.post("/guild/{guild_id}/settings/invalidate")
+async def invalidate_guild_settings(
+    guild_id: str,
+    user: dict[str, Any] = require_clearance("owner", "admin"),
+) -> dict:
+    """Force all bots in this guild to hot-reload guild settings immediately."""
+    subscriber_count = await _safe_publish(
+        redis_ipc.build_guild_channel(guild_id, "settings"),
+        "GUILD_SETTINGS_INVALIDATION",
+        {"triggered_by": user.get("sub")},
+    )
+
+    await _record_audit(user, "GUILD_SETTINGS_INVALIDATE", "guild_settings", guild_id)
+
+    return {
+        "status": "published",
+        "subscribers_notified": subscriber_count,
+    }

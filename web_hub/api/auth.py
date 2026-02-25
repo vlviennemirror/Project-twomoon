@@ -3,6 +3,7 @@ import secrets
 import logging
 import time
 from typing import Any, Optional
+from urllib.parse import urlencode
 
 import httpx
 from fastapi import APIRouter, Request, Response, HTTPException, Depends
@@ -164,7 +165,7 @@ async def login(request: Request) -> RedirectResponse:
         "prompt": "none",
     }
 
-    authorize_url = f"{DISCORD_AUTHORIZE_URL}?{'&'.join(f'{k}={v}' for k, v in params.items())}"
+    authorize_url = f"{DISCORD_AUTHORIZE_URL}?{urlencode(params)}"
 
     response = RedirectResponse(url=authorize_url, status_code=302)
     response.set_cookie(

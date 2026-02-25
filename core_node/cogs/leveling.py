@@ -260,8 +260,6 @@ class LevelingCog(commands.Cog, name="Leveling"):
         self._xp_buffer[key] = entry
         return entry
 
-    # ── Core XP Engine ────────────────────────────────────────────────
-
     async def _grant_xp(
         self,
         guild_id: str,
@@ -271,9 +269,23 @@ class LevelingCog(commands.Cog, name="Leveling"):
         source: str,
     ) -> None:
         user_id = str(member.id)
+        key = (guild_id, user_id)
+
+        # ── Phase 1: Read/create buffer entry ────────────────────────────────
+        # No I/O inside the lock. Only memory operations.
+        # If the entry needs DB hydration, we record that intent and exit the
+        # lock before doing the network round-trip.
+        async with self._buffer_lock:
+            entry = self._xp_buffer.get(key)
+            if entry is None or entry.faction != faction:
+                entry = BufferEntry(faction=faction)
+                self._xp_buffer[key] = entry
+            needs_hydration = entry.needs_hydration
+
+        if needs_hydration:
+            await self._hydrate_entry(guild_id, user_id, faction, entry)
 
         async with self._buffer_lock:
-            entry = await self._get_entry(guild_id, user_id, faction)
             old_level = entry.level
 
             entry.delta_xp += xp_amount
@@ -301,7 +313,9 @@ class LevelingCog(commands.Cog, name="Leveling"):
             )
 
         if buffer_size >= BUFFER_COUNT_THRESHOLD:
-            logger.info("Buffer threshold hit (%d entries). Triggering early flush.", buffer_size)
+            logger.info(
+                "Buffer threshold hit (%d entries). Triggering early flush.", buffer_size
+            )
             asyncio.create_task(self._flush_buffer())
 
     async def _process_level_up(
@@ -396,15 +410,23 @@ class LevelingCog(commands.Cog, name="Leveling"):
             snapshot = self._xp_buffer.copy()
             self._xp_buffer.clear()
 
-        records = []
+        records: list[tuple] = []
+        total_xp_map: dict[tuple[str, str], int] = {}
+
         for (guild_id, user_id), e in snapshot.items():
-            if e.delta_xp == 0 and e.delta_messages == 0 and e.delta_reactions == 0 and e.delta_voice_min == 0:
+            if (
+                e.delta_xp == 0
+                and e.delta_messages == 0
+                and e.delta_reactions == 0
+                and e.delta_voice_min == 0
+            ):
                 continue
             records.append((
                 guild_id, user_id, e.faction,
                 e.delta_xp, e.level,
                 e.delta_messages, e.delta_reactions, e.delta_voice_min,
             ))
+            total_xp_map[(guild_id, user_id)] = e.total_xp
 
         if not records:
             return
@@ -427,13 +449,15 @@ class LevelingCog(commands.Cog, name="Leveling"):
                         existing.level = max(existing.level, lvl)
                     else:
                         self._xp_buffer[key] = BufferEntry(
-                            faction=fac, delta_xp=dxp,
-                            delta_messages=dm, delta_reactions=dr,
-                            delta_voice_min=dv, level=lvl,
-                            needs_hydration=True,
+                            faction=fac,
+                            delta_xp=dxp,
+                            delta_messages=dm,
+                            delta_reactions=dr,
+                            delta_voice_min=dv,
+                            level=lvl,
+                            total_xp=total_xp_map.get(key, dxp),
+                            needs_hydration=False,
                         )
-
-    # ── Voice State Machine ───────────────────────────────────────────
 
     @tasks.loop(minutes=1.0)
     async def _voice_xp_loop(self) -> None:
