@@ -17,6 +17,11 @@ from shared_lib import redis_ipc
 from web_hub.services import fleet_publisher
 from web_hub.api.auth import router as auth_router, require_clearance
 
+from web_hub.api.config import router as api_config_router
+from web_hub.api.leaderboard import router as leaderboard_router
+from web_hub.api.moderation import router as moderation_router
+from web_hub.api.stats import router as stats_router
+
 LOG_FORMAT = "[%(asctime)s] [%(name)-24s] [%(levelname)-7s] %(message)s"
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
@@ -108,6 +113,10 @@ app.add_middleware(
 )
 
 app.include_router(auth_router)
+app.include_router(api_config_router)
+app.include_router(leaderboard_router)
+app.include_router(moderation_router)
+app.include_router(stats_router)
 
 
 fleet_router = APIRouter(prefix="/api/fleet", tags=["Fleet Management"])

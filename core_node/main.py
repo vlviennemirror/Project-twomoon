@@ -43,12 +43,12 @@ logger = logging.getLogger("twomoon.core_node")
 COG_REGISTRY: dict[str, list[str]] = {
     "CORE_NODE": [
         "core_node.cogs.leveling",
-        "core_node.cogs.moderation",
+        "core_node.cogs.apostle",
         "core_node.cogs.faction",
         "core_node.cogs.vouch",
     ],
     "MODERATION": [
-        "core_node.cogs.moderation",
+        "core_node.cogs.apostle",
     ],
     "LEVELING": [
         "core_node.cogs.leveling",
