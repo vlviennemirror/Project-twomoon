@@ -1,7 +1,7 @@
 import logging
 from typing import Any
 
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, Query, HTTPException
 
 from shared_lib import database
 from shared_lib import redis_ipc
@@ -133,7 +133,6 @@ async def get_strike_detail(
     )
 
     if not row:
-        from fastapi import HTTPException
         raise HTTPException(status_code=404, detail="Strike not found")
 
     uid = str(row["user_id"])
@@ -154,7 +153,6 @@ async def get_strike_detail(
         "confidence": float(row["confidence"]) if row["confidence"] is not None else None,
         "source": row["source"] or "REGEX",
         "message_content": row["message_content"] if user.get("clearance") in ("owner", "admin") else "[REDACTED]",
-        "action_taken": row["tier"],
         "created_at": row["created_at"].isoformat() if row["created_at"] else "",
     }
 
