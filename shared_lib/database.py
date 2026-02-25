@@ -1,6 +1,7 @@
 import os
 import asyncio
 import logging
+import ssl
 from contextlib import asynccontextmanager
 from typing import Optional, Any
 
@@ -29,6 +30,10 @@ async def get_pool() -> asyncpg.Pool:
         if not dsn:
             raise RuntimeError("DATABASE_URL environment variable is not set")
 
+        ssl_ctx = ssl.create_default_context()
+        ssl_ctx.check_hostname = False
+        ssl_ctx.verify_mode = ssl.CERT_NONE
+
         _pool = await asyncpg.create_pool(
             dsn=dsn,
             min_size=2,
@@ -39,6 +44,7 @@ async def get_pool() -> asyncpg.Pool:
             server_settings={
                 "application_name": "twomoon_core",
             },
+            ssl=ssl_ctx,
         )
         logger.info("CockroachDB connection pool initialized (min=2, max=8)")
         return _pool
