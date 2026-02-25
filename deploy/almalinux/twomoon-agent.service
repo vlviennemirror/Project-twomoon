@@ -1,0 +1,37 @@
+[Unit]
+Description=Two Moon AlmaLinux Fleet Agent
+Documentation=https://github.com/your-org/project-two-moon
+After=network-online.target redis.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=twomoon
+Group=twomoon
+WorkingDirectory=/opt/twomoon
+ExecStart=/opt/twomoon/venv/bin/python almalinux_agent.py
+ExecStop=/bin/kill -SIGTERM $MAINPID
+
+Restart=always
+RestartSec=5
+StartLimitIntervalSec=300
+StartLimitBurst=10
+
+EnvironmentFile=/opt/twomoon/.env
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=twomoon-agent
+
+LimitNOFILE=65535
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStopSec=30
+
+ProtectSystem=full
+ProtectHome=read-only
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
