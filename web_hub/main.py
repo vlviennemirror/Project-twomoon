@@ -264,15 +264,30 @@ async def health_check() -> dict:
         await database.fetchval("SELECT 1")
         db_ok = True
     except Exception:
-        pass
+        db_ok = False
 
     try:
         redis_ok = await redis_ipc.health_check()
     except Exception:
-        pass
+        redis_ok = False
 
-    agent = await fleet_publisher.get_agent_health()
-    fleet = await fleet_publisher.get_fleet_status()
+    try:
+        agent = await fleet_publisher.get_agent_health()
+        # normalize to dict at minimum
+        if not isinstance(agent, dict):
+            agent = {"agent_online": False}
+    except Exception as e:
+        logger.warning("fleet_publisher.get_agent_health failed: %s", e)
+        agent = {"agent_online": False}
+
+    try:
+        fleet = await fleet_publisher.get_fleet_status()
+        if not isinstance(fleet, list):
+            fleet = []
+    except Exception as e:
+        logger.warning("fleet_publisher.get_fleet_status failed: %s", e)
+        fleet = []
+
     alive_count = sum(1 for b in fleet if b.get("status") == "RUNNING")
 
     all_healthy = db_ok and redis_ok and agent.get("agent_online", False)
@@ -298,10 +313,23 @@ async def _record_audit(
     target_type: str,
     target_id: str,
 ) -> None:
-    details = json.dumps({
+    details_dict = {
         "clearance": user.get("clearance", "unknown"),
         "username": user.get("username", "unknown"),
-    })
+    }
+
+    try:
+        details_json = json.dumps(details_dict, ensure_ascii=False)
+    except (TypeError, ValueError):
+        safe_details = {
+            "clearance": str(details_dict.get("clearance", "unknown")),
+            "username": str(details_dict.get("username", "unknown")),
+        }
+        details_json = json.dumps(safe_details, ensure_ascii=False)
+
+    MAX_DETAILS_LEN = 2000
+    if len(details_json) > MAX_DETAILS_LEN:
+        details_json = details_json[:MAX_DETAILS_LEN]
 
     try:
         await database.execute(
@@ -311,7 +339,7 @@ async def _record_audit(
             action,
             target_type,
             target_id,
-            details,
+            details_json,
         )
     except Exception as e:
         logger.error("Audit log write failed: %s", e)

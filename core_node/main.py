@@ -61,17 +61,20 @@ COG_REGISTRY: dict[str, list[str]] = {
 
 
 def decrypt_token(cipher_text: str, master_key: str) -> str:
-    try:
-        key_bytes = master_key.encode("utf-8")
-        if len(key_bytes) != 44:
-            key_bytes = urlsafe_b64encode(key_bytes.ljust(32, b"\0")[:32])
-        from cryptography.fernet import Fernet
+    
+    from cryptography.fernet import Fernet, InvalidToken
+    key_bytes = master_key.encode("utf-8")
+    
+    if len(key_bytes) != 44:
+        key_bytes = urlsafe_b64encode(key_bytes.ljust(32, b"\0")[:32])
 
-        f = Fernet(key_bytes)
+    f = Fernet(key_bytes)
+
+    try:
         return f.decrypt(cipher_text.encode("utf-8")).decode("utf-8")
-    except Exception:
-        logger.warning("Fernet decryption unavailable, attempting raw base64 fallback")
-        return urlsafe_b64decode(cipher_text + "==").decode("utf-8")
+    except InvalidToken:
+        logger.critical("Master key mismatch or token tampered. Shutting down.")
+        sys.exit(1)
 
 
 class CoreNode(commands.Bot):

@@ -102,6 +102,13 @@ export default function FleetPage() {
 
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const abortRef = useRef<AbortController | null>(null);
+  const isMountedRef = useRef<boolean>(true);
+
+  useEffect(() => {
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
 
   const fetchFleet = useCallback(async (isBackground = false) => {
     abortRef.current?.abort();
@@ -112,15 +119,16 @@ export default function FleetPage() {
       const response = await api.get<FleetResponse>("/api/fleet/status", {
         signal: controller.signal,
       });
+      if (!isMountedRef.current) return;
       setData(response.data);
       setError(null);
     } catch (err: unknown) {
-      if (err instanceof Error && err.name === "CanceledError") return;
-      if (!isBackground) {
+      if (err instanceof Error && (err as any).name === "CanceledError") return;
+      if (!isBackground && isMountedRef.current) {
         setError("Failed to fetch fleet status");
       }
     } finally {
-      setIsInitialLoad(false);
+      if (isMountedRef.current) setIsInitialLoad(false);
     }
   }, []);
 
@@ -140,6 +148,33 @@ export default function FleetPage() {
     return () => clearTimeout(timer);
   }, [toast]);
 
+  async function waitForDesiredStatus(
+    botId: string,
+    predicate: (status: string) => boolean,
+    {
+      timeoutMs = 20000,
+      intervalMs = 1000,
+    }: { timeoutMs?: number; intervalMs?: number } = {}
+  ): Promise<boolean> {
+    const deadline = Date.now() + timeoutMs;
+
+    while (Date.now() < deadline) {
+      try {
+        const resp = await api.get<BotEntry>(`/api/fleet/${botId}/status`);
+        const status = resp.data?.status ?? "UNKNOWN";
+        if (predicate(status)) {
+          return true;
+        }
+      } catch (err) {
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, intervalMs));
+      if (!isMountedRef.current) return false;
+    }
+
+    return false;
+  }
+
   const handleAction = async (
     botId: string,
     action: "start" | "stop" | "restart"
@@ -153,11 +188,36 @@ export default function FleetPage() {
         message: `${action.charAt(0).toUpperCase() + action.slice(1)} command sent`,
         type: "success",
       });
-      setTimeout(() => fetchFleet(true), 1000);
-    } catch {
+
+      const desiredPredicate = (status: string) => {
+        if (action === "start") return status === "RUNNING";
+        if (action === "stop") return status === "EXITED" || status === "NOT_RUNNING";
+        if (action === "restart") return status === "RUNNING";
+        return false;
+      };
+
+      const changed = await waitForDesiredStatus(botId, desiredPredicate, {
+        timeoutMs: 20000,
+        intervalMs: 1000,
+      });
+
+      await fetchFleet(true);
+
+      if (changed) {
+        setToast({
+          message: `Bot ${truncateId(botId)} status updated`,
+          type: "success",
+        });
+      } else {
+        setToast({
+          message: `No status change observed within timeout; changes may still be applied`,
+          type: "error",
+        });
+      }
+    } catch (e) {
       setToast({ message: `Failed to ${action} bot`, type: "error" });
     } finally {
-      setPendingAction(null);
+      if (isMountedRef.current) setPendingAction(null);
     }
   };
 
@@ -254,8 +314,7 @@ export default function FleetPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
         {bots.map((bot) => {
-          const style =
-            STATUS_STYLES[bot.status] ?? STATUS_STYLES["UNKNOWN"];
+          const style = STATUS_STYLES[bot.status] ?? STATUS_STYLES["UNKNOWN"];
           const isRunning = bot.status === "RUNNING";
           const isStopped =
             bot.status === "EXITED" ||
@@ -292,9 +351,7 @@ export default function FleetPage() {
                   <span
                     className={`w-2 h-2 rounded-full flex-shrink-0 ${style.dot}`}
                   />
-                  <span
-                    className={`text-xs font-medium ${style.label}`}
-                  >
+                  <span className={`text-xs font-medium ${style.label}`}>
                     {bot.status}
                   </span>
                 </div>

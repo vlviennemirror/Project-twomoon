@@ -7,6 +7,7 @@ import {
   useCallback,
   type ReactNode,
 } from "react";
+import axios from "axios";
 import api from "@/lib/api";
 
 interface User {
@@ -43,22 +44,22 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       setIsLoading(true);
       setError(null);
+
       const response = await api.get<User>("/auth/me");
       setUser(response.data);
     } catch (err: unknown) {
       setUser(null);
-      if (
-        typeof err === "object" &&
-        err !== null &&
-        "response" in err &&
-        typeof (err as Record<string, unknown>).response === "object"
-      ) {
-        const status = (
-          (err as Record<string, unknown>).response as Record<string, unknown>
-        )?.status;
-        if (status !== 401) {
+
+      if (axios.isAxiosError(err)) {
+        const status = err.response?.status;
+
+        if (!status) {
+          setError("Network error");
+        } else if (status !== 401) {
           setError("Failed to verify session");
         }
+      } else {
+        setError("Unexpected error occurred");
       }
     } finally {
       setIsLoading(false);
@@ -69,7 +70,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       await api.post("/auth/logout");
     } catch {
-      // noop
     } finally {
       setUser(null);
       setError(null);

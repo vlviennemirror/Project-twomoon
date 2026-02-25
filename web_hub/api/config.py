@@ -2,7 +2,7 @@ import json
 import logging
 from typing import Any, Optional
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, Field
 
 from shared_lib import database
@@ -61,17 +61,101 @@ class GuildSettingsUpdate(BaseModel):
     feature_overrides: Optional[dict[str, Any]] = None
 
 
+_ALLOWED_BOT_FIELDS = {
+    "ai_system_prompt",
+    "ai_model_id",
+    "log_channel_id",
+    "feature_flags",
+    "moderation_config",
+}
+
+_ALLOWED_GUILD_FIELDS = {
+    "level_base",
+    "level_exponent",
+    "msg_xp_min",
+    "msg_xp_max",
+    "msg_cooldown_sec",
+    "react_cooldown_sec",
+    "react_xp",
+    "voice_xp_per_min",
+    "announce_enabled",
+    "announce_channel_id",
+    "feature_overrides",
+}
+
+_MAX_DETAILS_LEN = 2000
+
+
+def _serialize_json_field(value: dict[str, Any]) -> str:
+    """Serialize JSON field safely and deterministically."""
+    try:
+        return json.dumps(value, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
+    except (TypeError, ValueError):
+        safe = {k: str(v) for k, v in (value or {}).items()}
+        return json.dumps(safe, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
+
+
+async def _safe_publish(channel: str, event: str, payload: dict[str, Any]) -> int:
+    """Publish to redis but never fail the main flow; log and return 0 subscribers on error."""
+    try:
+        return await redis_ipc.publish_event(channel, event, payload)
+    except Exception as e:
+        logger.warning("Redis publish failed for %s: %s", channel, e)
+        return 0
+
+
+async def _record_audit(
+    user: dict[str, Any],
+    action: str,
+    target_type: str,
+    target_id: str,
+    extra: Optional[dict] = None,
+) -> None:
+    details = {
+        "clearance": user.get("clearance", "unknown"),
+        "username": user.get("username", "unknown"),
+    }
+    if extra:
+        details.update(extra)
+
+    try:
+        details_json = json.dumps(details, ensure_ascii=False)
+    except (TypeError, ValueError):
+        safe = {k: str(v) for k, v in details.items()}
+        details_json = json.dumps(safe, ensure_ascii=False)
+
+    if len(details_json) > _MAX_DETAILS_LEN:
+        details_json = details_json[:_MAX_DETAILS_LEN]
+
+    try:
+        await database.execute(
+            "INSERT INTO audit_log (actor_id, action, target_type, target_id, details) "
+            "VALUES ($1, $2, $3, $4, $5::jsonb)",
+            user.get("sub", "unknown"),
+            action,
+            target_type,
+            target_id,
+            details_json,
+        )
+    except Exception as e:
+        logger.error("Audit log write failed: %s", e)
+
+
 @router.get("/bot/{bot_id}", response_model=BotConfigResponse)
 async def get_bot_config(
     bot_id: str,
     user: dict[str, Any] = require_clearance("owner", "admin", "moderator"),
 ) -> BotConfigResponse:
-    row = await database.fetchrow(
-        "SELECT bot_id, guild_id, ai_system_prompt, ai_model_id, "
-        "log_channel_id, feature_flags, moderation_config "
-        "FROM bot_configs WHERE bot_id = $1",
-        bot_id,
-    )
+    try:
+        row = await database.fetchrow(
+            "SELECT bot_id, guild_id, ai_system_prompt, ai_model_id, "
+            "log_channel_id, feature_flags, moderation_config "
+            "FROM bot_configs WHERE bot_id = $1",
+            bot_id,
+        )
+    except Exception as e:
+        logger.error("DB error fetching bot_config %s: %s", bot_id, e)
+        raise HTTPException(status_code=500, detail="Database error")
 
     if not row:
         raise HTTPException(status_code=404, detail="Bot config not found")
@@ -79,11 +163,11 @@ async def get_bot_config(
     return BotConfigResponse(
         bot_id=str(row["bot_id"]),
         guild_id=str(row["guild_id"]) if row["guild_id"] else None,
-        ai_system_prompt=row["ai_system_prompt"],
-        ai_model_id=row["ai_model_id"],
-        log_channel_id=row["log_channel_id"],
-        feature_flags=row["feature_flags"] or {},
-        moderation_config=row["moderation_config"] or {},
+        ai_system_prompt=row.get("ai_system_prompt"),
+        ai_model_id=row.get("ai_model_id"),
+        log_channel_id=row.get("log_channel_id"),
+        feature_flags=row.get("feature_flags") or {},
+        moderation_config=row.get("moderation_config") or {},
     )
 
 
@@ -93,10 +177,14 @@ async def update_bot_config(
     body: BotConfigUpdate,
     user: dict[str, Any] = require_clearance("owner", "admin"),
 ) -> BotConfigResponse:
-    existing = await database.fetchrow(
-        "SELECT bot_id, guild_id FROM bot_configs WHERE bot_id = $1",
-        bot_id,
-    )
+    try:
+        existing = await database.fetchrow(
+            "SELECT bot_id, guild_id FROM bot_configs WHERE bot_id = $1",
+            bot_id,
+        )
+    except Exception as e:
+        logger.error("DB error checking existing bot_config %s: %s", bot_id, e)
+        raise HTTPException(status_code=500, detail="Database error")
 
     if not existing:
         raise HTTPException(status_code=404, detail="Bot config not found")
@@ -105,17 +193,21 @@ async def update_bot_config(
     if not updates:
         raise HTTPException(status_code=400, detail="No fields to update")
 
+    invalid = [f for f in updates.keys() if f not in _ALLOWED_BOT_FIELDS]
+    if invalid:
+        raise HTTPException(status_code=400, detail=f"Invalid fields in update: {invalid}")
+
     set_clauses = []
-    params = []
+    params: list[Any] = []
     param_idx = 1
 
     for field_name, value in updates.items():
         if field_name in ("feature_flags", "moderation_config"):
+            params.append(_serialize_json_field(value or {}))
             set_clauses.append(f"{field_name} = ${param_idx}::jsonb")
-            params.append(json.dumps(value))
         else:
-            set_clauses.append(f"{field_name} = ${param_idx}")
             params.append(value)
+            set_clauses.append(f"{field_name} = ${param_idx}")
         param_idx += 1
 
     set_clauses.append("updated_at = now()")
@@ -126,12 +218,17 @@ async def update_bot_config(
         f"WHERE bot_id = ${param_idx}"
     )
 
-    await database.execute(query, *params)
+    try:
+        await database.execute(query, *params)
+    except Exception as e:
+        logger.error("DB error updating bot_config %s: %s", bot_id, e)
+        raise HTTPException(status_code=500, detail="Failed to update bot config")
 
     mutated_fields = list(updates.keys())
 
-    subscriber_count = await redis_ipc.publish_event(
-        redis_ipc.build_config_channel(bot_id),
+    channel = redis_ipc.build_config_channel(bot_id)
+    subscriber_count = await _safe_publish(
+        channel,
         "CONFIG_INVALIDATION",
         {
             "mutated_fields": mutated_fields,
@@ -164,25 +261,29 @@ async def get_guild_settings(
     guild_id: str,
     user: dict[str, Any] = require_clearance("owner", "admin", "moderator"),
 ) -> GuildSettingsResponse:
-    row = await database.fetchrow(
-        "SELECT * FROM guild_settings WHERE guild_id = $1",
-        guild_id,
-    )
+    try:
+        row = await database.fetchrow(
+            "SELECT * FROM guild_settings WHERE guild_id = $1",
+            guild_id,
+        )
+    except Exception as e:
+        logger.error("DB error fetching guild_settings %s: %s", guild_id, e)
+        raise HTTPException(status_code=500, detail="Database error")
 
     if not row:
         raise HTTPException(status_code=404, detail="Guild settings not found")
 
     return GuildSettingsResponse(
         guild_id=str(row["guild_id"]),
-        level_base=row.get("level_base", 100),
+        level_base=int(row.get("level_base", 100)),
         level_exponent=float(row.get("level_exponent", 1.5)),
-        msg_xp_min=row.get("msg_xp_min", 15),
-        msg_xp_max=row.get("msg_xp_max", 25),
-        msg_cooldown_sec=row.get("msg_cooldown_sec", 60),
-        react_cooldown_sec=row.get("react_cooldown_sec", 120),
-        react_xp=row.get("react_xp", 5),
-        voice_xp_per_min=row.get("voice_xp_per_min", 10),
-        announce_enabled=row.get("announce_enabled", True),
+        msg_xp_min=int(row.get("msg_xp_min", 15)),
+        msg_xp_max=int(row.get("msg_xp_max", 25)),
+        msg_cooldown_sec=int(row.get("msg_cooldown_sec", 60)),
+        react_cooldown_sec=int(row.get("react_cooldown_sec", 120)),
+        react_xp=int(row.get("react_xp", 5)),
+        voice_xp_per_min=int(row.get("voice_xp_per_min", 10)),
+        announce_enabled=bool(row.get("announce_enabled", True)),
         announce_channel_id=row.get("announce_channel_id"),
         feature_overrides=row.get("feature_overrides") or {},
     )
@@ -194,10 +295,14 @@ async def update_guild_settings(
     body: GuildSettingsUpdate,
     user: dict[str, Any] = require_clearance("owner", "admin"),
 ) -> GuildSettingsResponse:
-    existing = await database.fetchrow(
-        "SELECT guild_id FROM guild_settings WHERE guild_id = $1",
-        guild_id,
-    )
+    try:
+        existing = await database.fetchrow(
+            "SELECT guild_id FROM guild_settings WHERE guild_id = $1",
+            guild_id,
+        )
+    except Exception as e:
+        logger.error("DB error checking guild_settings %s: %s", guild_id, e)
+        raise HTTPException(status_code=500, detail="Database error")
 
     if not existing:
         raise HTTPException(status_code=404, detail="Guild settings not found")
@@ -206,17 +311,21 @@ async def update_guild_settings(
     if not updates:
         raise HTTPException(status_code=400, detail="No fields to update")
 
+    invalid = [f for f in updates.keys() if f not in _ALLOWED_GUILD_FIELDS]
+    if invalid:
+        raise HTTPException(status_code=400, detail=f"Invalid fields in update: {invalid}")
+
     set_clauses = []
-    params = []
+    params: list[Any] = []
     param_idx = 1
 
     for field_name, value in updates.items():
         if field_name == "feature_overrides":
+            params.append(_serialize_json_field(value or {}))
             set_clauses.append(f"{field_name} = ${param_idx}::jsonb")
-            params.append(json.dumps(value))
         else:
-            set_clauses.append(f"{field_name} = ${param_idx}")
             params.append(value)
+            set_clauses.append(f"{field_name} = ${param_idx}")
         param_idx += 1
 
     set_clauses.append("updated_at = now()")
@@ -227,9 +336,13 @@ async def update_guild_settings(
         f"WHERE guild_id = ${param_idx}"
     )
 
-    await database.execute(query, *params)
+    try:
+        await database.execute(query, *params)
+    except Exception as e:
+        logger.error("DB error updating guild_settings %s: %s", guild_id, e)
+        raise HTTPException(status_code=500, detail="Failed to update guild settings")
 
-    subscriber_count = await redis_ipc.publish_event(
+    subscriber_count = await _safe_publish(
         redis_ipc.build_guild_channel(guild_id, "settings"),
         "GUILD_SETTINGS_INVALIDATION",
         {
@@ -259,52 +372,31 @@ async def update_guild_settings(
 
 @router.get("/bots")
 async def list_configurable_bots(
+    limit: int = Query(100, ge=1, le=1000),
     user: dict[str, Any] = require_clearance("owner", "admin", "moderator"),
 ) -> dict:
-    rows = await database.fetch(
-        "SELECT b.bot_id, b.bot_type, b.guild_id, b.is_active, "
-        "bc.ai_model_id, bc.feature_flags "
-        "FROM bots b LEFT JOIN bot_configs bc ON b.bot_id = bc.bot_id "
-        "ORDER BY b.created_at ASC"
-    )
+    try:
+        rows = await database.fetch(
+            "SELECT b.bot_id, b.bot_type, b.guild_id, b.is_active, "
+            "bc.ai_model_id, bc.feature_flags "
+            "FROM bots b LEFT JOIN bot_configs bc ON b.bot_id = bc.bot_id "
+            "ORDER BY b.created_at ASC "
+            "LIMIT $1",
+            limit,
+        )
+    except Exception as e:
+        logger.error("DB error listing bots: %s", e)
+        raise HTTPException(status_code=500, detail="Database error")
 
     bots = []
     for r in rows:
         bots.append({
             "bot_id": str(r["bot_id"]),
-            "bot_type": r["bot_type"],
-            "guild_id": str(r["guild_id"]) if r["guild_id"] else None,
-            "is_active": r["is_active"],
+            "bot_type": r.get("bot_type"),
+            "guild_id": str(r["guild_id"]) if r.get("guild_id") else None,
+            "is_active": bool(r.get("is_active")),
             "ai_model_id": r.get("ai_model_id"),
             "feature_flags": r.get("feature_flags") or {},
         })
 
     return {"bots": bots}
-
-
-async def _record_audit(
-    user: dict[str, Any],
-    action: str,
-    target_type: str,
-    target_id: str,
-    extra: Optional[dict] = None,
-) -> None:
-    details = {
-        "clearance": user.get("clearance", "unknown"),
-        "username": user.get("username", "unknown"),
-    }
-    if extra:
-        details.update(extra)
-
-    try:
-        await database.execute(
-            "INSERT INTO audit_log (actor_id, action, target_type, target_id, details) "
-            "VALUES ($1, $2, $3, $4, $5::jsonb)",
-            user.get("sub", "unknown"),
-            action,
-            target_type,
-            target_id,
-            json.dumps(details),
-        )
-    except Exception as e:
-        logger.error("Audit log write failed: %s", e)

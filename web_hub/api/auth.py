@@ -21,7 +21,11 @@ DISCORD_SCOPES = "identify guilds.members.read"
 DISCORD_CLIENT_ID = os.environ.get("DISCORD_CLIENT_ID", "")
 DISCORD_CLIENT_SECRET = os.environ.get("DISCORD_CLIENT_SECRET", "")
 DISCORD_REDIRECT_URI = os.environ.get("DISCORD_REDIRECT_URI", "")
-JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "")
+
+JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY")
+if not JWT_SECRET_KEY:
+    raise RuntimeError("FATAL: JWT_SECRET_KEY environment variable is missing or empty! Aborting startup.")
+
 JWT_ALGORITHM = "HS256"
 JWT_EXPIRATION_SECONDS = 43200
 

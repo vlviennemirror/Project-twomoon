@@ -74,6 +74,7 @@ class ApostleCog(commands.Cog, name="Apostle"):
         self._compiled_rules: list[CompiledRule] = []
         self._consecutive_failures: int = 0
         self._last_failure_time: float = 0.0
+        self._next_probe_time: float = 0.0
         self._circuit_probe_active: bool = False
         self._total_analyzed: int = 0
         self._total_caught: int = 0
@@ -146,11 +147,15 @@ class ApostleCog(commands.Cog, name="Apostle"):
         return base
 
     def _circuit_should_skip(self) -> bool:
+        """
+        Return True if we should skip calling the AI because circuit is open.
+        Implements a half-open probe: after CIRCUIT_RECOVERY_SECONDS elapse, allow one probe.
+        """
         if self._consecutive_failures < self.CIRCUIT_FAILURE_THRESHOLD:
             return False
 
-        elapsed = time.monotonic() - self._last_failure_time
-        if elapsed < self.CIRCUIT_RECOVERY_SECONDS:
+        now = time.monotonic()
+        if now < self._next_probe_time:
             return True
 
         if self._circuit_probe_active:
@@ -158,8 +163,8 @@ class ApostleCog(commands.Cog, name="Apostle"):
 
         self._circuit_probe_active = True
         logger.info(
-            "Circuit breaker HALF-OPEN: %.1fs since last failure, allowing probe request",
-            elapsed,
+            "Circuit breaker HALF-OPEN: allowed probe request after %.1fs cool-down",
+            now - self._last_failure_time if self._last_failure_time else 0.0,
         )
         return False
 
@@ -167,6 +172,7 @@ class ApostleCog(commands.Cog, name="Apostle"):
         was_open = self._consecutive_failures >= self.CIRCUIT_FAILURE_THRESHOLD
         self._consecutive_failures = 0
         self._last_failure_time = 0.0
+        self._next_probe_time = 0.0
         self._circuit_probe_active = False
         if was_open:
             logger.info("Circuit breaker CLOSED: probe succeeded, AI moderation fully restored")
@@ -174,6 +180,7 @@ class ApostleCog(commands.Cog, name="Apostle"):
     def _circuit_on_failure(self) -> None:
         self._consecutive_failures += 1
         self._last_failure_time = time.monotonic()
+        self._next_probe_time = self._last_failure_time + self.CIRCUIT_RECOVERY_SECONDS
         was_probe = self._circuit_probe_active
         self._circuit_probe_active = False
         if was_probe:
