@@ -4,10 +4,8 @@ import GlassCard from "@/components/GlassCard";
 import api from "@/lib/api";
 import {
   Shield,
-  Brain,
   AlertTriangle,
   Ban,
-  Clock,
   MessageSquareOff,
   Loader2,
   RefreshCw,
@@ -88,8 +86,6 @@ function formatTimestamp(iso: string): string {
 }
 
 export default function ModerationPage() {
-  const { hasClearance } = useAuth();
-
   const [metrics, setMetrics] = useState<ModerationMetrics>({
     total_caught: 0,
     total_regex: 0,
