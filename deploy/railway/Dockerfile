@@ -29,6 +29,9 @@ COPY web_hub/ ./web_hub/
 COPY --from=frontend /build/dist ./web_hub/frontend/dist
 
 RUN useradd --create-home --shell /bin/bash twomoon
+RUN mkdir -p /home/twomoon/.postgresql && \
+    curl -o /home/twomoon/.postgresql/root.crt 'https://cockroachlabs.cloud/clusters/routing/v1/defaultdb/cert' && \
+    chown -R twomoon:twomoon /home/twomoon/.postgresql
 USER twomoon
 
 EXPOSE 8000
