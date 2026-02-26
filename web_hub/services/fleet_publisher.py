@@ -7,7 +7,7 @@ from shared_lib import redis_ipc
 
 logger = logging.getLogger("twomoon.fleet_publisher")
 
-FLEET_COMMAND_CHANNEL = "events:fleet_command"
+FLEET_COMMAND_CHANNEL = "twomoon:fleet_commands"
 FLEET_STATUS_CHANNEL = "events:fleet_status"
 AGENT_HEARTBEAT_KEY = "fleet:agent:heartbeat"
 BOT_STATUS_KEY_PREFIX = "fleet:status:"
@@ -20,21 +20,10 @@ async def publish_fleet_command(
     requested_by: Optional[str] = None,
     extra: Optional[dict] = None,
 ) -> int:
-    payload = {
-        "action": action,
-        "bot_id": bot_id,
-        "requested_by": requested_by or "system",
-        "timestamp": time.time(),
-    }
-    if extra:
-        payload["extra"] = extra
-
-    subscriber_count = await redis_ipc.publish_event(
-        FLEET_COMMAND_CHANNEL,
-        "FLEET_COMMAND",
-        payload,
-    )
-
+    import json
+    r = await redis_ipc.get_redis()
+    payload = json.dumps({"command": action.lower(), "bot_id": bot_id})
+    subscriber_count = await r.publish(FLEET_COMMAND_CHANNEL, payload)
     logger.info(
         "Fleet command published: action=%s bot_id=%s subscribers=%d",
         action,
