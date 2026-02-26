@@ -1,0 +1,66 @@
+[2026-02-26 14:57:38] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 14:57:38] [twomoon.core_node_win] [INFO   ]   Core Node bootstrapping · bot_id=ab02e039-e2e4-43a8-87b0-f167f6410e99
+[2026-02-26 14:57:38] [twomoon.core_node_win] [INFO   ]   Python=3.13.12 · Platform=win32
+[2026-02-26 14:57:38] [twomoon.core_node_win] [INFO   ]   GC thresholds: (300, 8, 8)
+[2026-02-26 14:57:38] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 15:00:05] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 15:00:05] [twomoon.core_node_win] [INFO   ]   Core Node bootstrapping · bot_id=ab02e039-e2e4-43a8-87b0-f167f6410e99
+[2026-02-26 15:00:05] [twomoon.core_node_win] [INFO   ]   Python=3.13.12 · Platform=win32
+[2026-02-26 15:00:05] [twomoon.core_node_win] [INFO   ]   GC thresholds: (300, 8, 8)
+[2026-02-26 15:00:05] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 15:03:09] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 15:03:09] [twomoon.core_node_win] [INFO   ]   Core Node bootstrapping · bot_id=ab02e039-e2e4-43a8-87b0-f167f6410e99
+[2026-02-26 15:03:09] [twomoon.core_node_win] [INFO   ]   Python=3.13.12 · Platform=win32
+[2026-02-26 15:03:09] [twomoon.core_node_win] [INFO   ]   GC thresholds: (300, 8, 8)
+[2026-02-26 15:03:09] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 15:03:11] [twomoon.core_node_win] [INFO   ] CockroachDB pool ready (min=1, max=3, stmt_cache=0, bot=ab02e039)
+[2026-02-26 15:03:11] [discord.client      ] [WARNING] PyNaCl is not installed, voice will NOT be supported
+[2026-02-26 15:03:13] [twomoon.core_node_win] [INFO   ] Setup hook initiated for bot_id=ab02e039-e2e4-43a8-87b0-f167f6410e99
+[2026-02-26 15:03:13] [twomoon.core_node_win] [INFO   ] Local IPC server listening on 127.0.0.1:60846 (port file: D:\BotDiscord\PROJECT-TwoMoon\.ipc\ab02e039-e2e4-43a8-87b0-f167f6410e99.port)
+[2026-02-26 15:03:14] [twomoon.core_node_win] [INFO   ] Identity loaded: type=CORE guild=12345
+[2026-02-26 15:03:15] [twomoon.core_node_win] [INFO   ] Config hydrated: 7 keys (updated_at=2026-02-26 01:37:38.517226+00:00)
+[2026-02-26 15:03:15] [twomoon.core_node_win] [INFO   ] Moderation rules hydrated: 0 active rules
+[2026-02-26 15:03:15] [twomoon.core_node_win] [INFO   ] Redis IPC listeners active
+[2026-02-26 15:03:15] [twomoon.redis_ipc   ] [INFO   ] Redis connection pool initialized (smashing-shepherd-30245.upstash.io:6379?ssl_cert_reqs=none)
+[2026-02-26 15:03:15] [twomoon.cogs.leveling] [INFO   ] Leveling online | factions=0 | blocked_ch=0 | blocked_r=0
+[2026-02-26 15:03:15] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.leveling
+[2026-02-26 15:03:15] [twomoon.cog.apostle ] [INFO   ] Compiled 0 moderation rules
+[2026-02-26 15:03:15] [twomoon.cog.apostle ] [INFO   ] Apostle cog loaded | compiled_rules=0 | max_concurrent=10
+[2026-02-26 15:03:15] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.apostle
+[2026-02-26 15:03:15] [twomoon.cog.faction ] [INFO   ] Faction configs hydrated: [] | friend_promo_days=7
+[2026-02-26 15:03:15] [twomoon.cog.faction ] [INFO   ] Faction cog loaded
+[2026-02-26 15:03:15] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.faction
+[2026-02-26 15:03:15] [twomoon.core_node_win] [ERROR  ] Cog failed to load: core_node.cogs.vouch → Extension 'core_node.cogs.vouch' raised an error: AttributeError: 'str' object has no attribute 'get'
+[2026-02-26 15:03:16] [twomoon.core_node_win] [INFO   ] Graceful shutdown initiated for bot_id=ab02e039-e2e4-43a8-87b0-f167f6410e99
+[2026-02-26 15:03:16] [twomoon.cogs.leveling] [WARNING] Emergency flush — 0 buffer entries pending
+[2026-02-26 15:03:16] [twomoon.core_node_win] [INFO   ] Emergency flush OK: Leveling
+[2026-02-26 15:03:16] [twomoon.core_node_win] [INFO   ] Local IPC server stopped
+[2026-02-26 15:03:16] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:12345'
+[2026-02-26 15:03:17] [twomoon.redis_ipc   ] [INFO   ] Listener loop exited for 'events:config:ab02e039-e2e4-43a8-87b0-f167f6410e99'
+[2026-02-26 15:03:17] [twomoon.redis_ipc   ] [INFO   ] Unsubscribed from 'events:config:ab02e039-e2e4-43a8-87b0-f167f6410e99'
+[2026-02-26 15:03:17] [twomoon.redis_ipc   ] [INFO   ] Listener loop exited for 'events:settings:12345'
+[2026-02-26 15:03:17] [twomoon.redis_ipc   ] [INFO   ] Unsubscribed from 'events:settings:12345'
+[2026-02-26 15:03:17] [twomoon.redis_ipc   ] [INFO   ] All subscriptions terminated (2 channels)
+[2026-02-26 15:03:17] [twomoon.redis_ipc   ] [INFO   ] Redis connection pool closed
+[2026-02-26 15:03:17] [twomoon.redis_ipc   ] [INFO   ] Redis IPC fully shut down
+[2026-02-26 15:03:17] [twomoon.database    ] [INFO   ] CockroachDB connection pool closed
+[2026-02-26 15:03:17] [twomoon.cogs.leveling] [WARNING] Emergency flush — 0 buffer entries pending
+[2026-02-26 15:03:17] [twomoon.cog.apostle ] [INFO   ] Apostle cog unloaded | analyzed=0 | caught=0
+[2026-02-26 15:03:17] [twomoon.core_node_win] [INFO   ] Core Node shutdown complete for bot_id=ab02e039-e2e4-43a8-87b0-f167f6410e99
+[2026-02-26 15:03:17] [twomoon.core_node_win] [CRITICAL] FATAL: Unhandled exception in bot lifecycle: 403 Forbidden (error code: 50001): Missing Access
+Traceback (most recent call last):
+  File "D:\BotDiscord\PROJECT-TwoMoon\core_node\main_windows.py", line 615, in async_main
+    await bot.start(token)
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\client.py", line 846, in start
+    await self.login(token)
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\client.py", line 689, in login
+    await self.setup_hook()
+  File "D:\BotDiscord\PROJECT-TwoMoon\core_node\main_windows.py", line 288, in setup_hook
+    await self.tree.sync(guild=guild_obj)
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\app_commands\tree.py", line 1118, in sync
+    data = await self._http.bulk_upsert_guild_commands(self.client.application_id, guild.id, payload=payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\http.py", line 767, in request
+    raise Forbidden(response, data)
+discord.errors.Forbidden: 403 Forbidden (error code: 50001): Missing Access
+[2026-02-26 15:03:17] [twomoon.core_node_win] [INFO   ] Process exiting for bot_id=ab02e039-e2e4-43a8-87b0-f167f6410e99

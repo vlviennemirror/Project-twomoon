@@ -515,7 +515,7 @@ async def _init_db_with_backoff(bot_id: str) -> None:
     """
     import asyncpg
     import ssl
-    import database as _db_module
+    from shared_lib import database as _db_module
 
     if _db_module._pool is not None and not _db_module._pool._closed:
         logger.info("DB pool already initialised (reusing existing)")

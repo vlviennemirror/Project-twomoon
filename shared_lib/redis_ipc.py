@@ -35,7 +35,7 @@ async def get_redis() -> redis.Redis:
             socket_connect_timeout=5.0,
             socket_timeout=5.0,
             retry_on_timeout=True,
-            health_check_interval=30,
+            health_check_interval=20,
         )
 
         await _redis_pool.ping()

@@ -1,0 +1,1020 @@
+[2026-02-26 14:57:38] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 14:57:38] [twomoon.core_node_win] [INFO   ]   Core Node bootstrapping · bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 14:57:38] [twomoon.core_node_win] [INFO   ]   Python=3.13.12 · Platform=win32
+[2026-02-26 14:57:38] [twomoon.core_node_win] [INFO   ]   GC thresholds: (300, 8, 8)
+[2026-02-26 14:57:38] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 15:00:06] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 15:00:06] [twomoon.core_node_win] [INFO   ]   Core Node bootstrapping · bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:00:06] [twomoon.core_node_win] [INFO   ]   Python=3.13.12 · Platform=win32
+[2026-02-26 15:00:06] [twomoon.core_node_win] [INFO   ]   GC thresholds: (300, 8, 8)
+[2026-02-26 15:00:06] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 15:03:10] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 15:03:10] [twomoon.core_node_win] [INFO   ]   Core Node bootstrapping · bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:03:10] [twomoon.core_node_win] [INFO   ]   Python=3.13.12 · Platform=win32
+[2026-02-26 15:03:10] [twomoon.core_node_win] [INFO   ]   GC thresholds: (300, 8, 8)
+[2026-02-26 15:03:10] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 15:03:11] [twomoon.core_node_win] [INFO   ] CockroachDB pool ready (min=1, max=3, stmt_cache=0, bot=365e232f)
+[2026-02-26 15:03:11] [discord.client      ] [WARNING] PyNaCl is not installed, voice will NOT be supported
+[2026-02-26 15:03:14] [twomoon.core_node_win] [INFO   ] Setup hook initiated for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:03:14] [twomoon.core_node_win] [INFO   ] Local IPC server listening on 127.0.0.1:60848 (port file: D:\BotDiscord\PROJECT-TwoMoon\.ipc\365e232f-569b-4afe-948e-b50aa380e030.port)
+[2026-02-26 15:03:14] [twomoon.core_node_win] [INFO   ] Identity loaded: type=CORE_NODE guild=1452886736874111009
+[2026-02-26 15:03:15] [twomoon.core_node_win] [INFO   ] Config hydrated: 0 keys (updated_at=N/A)
+[2026-02-26 15:03:15] [twomoon.core_node_win] [INFO   ] Moderation rules hydrated: 0 active rules
+[2026-02-26 15:03:15] [twomoon.core_node_win] [INFO   ] Redis IPC listeners active
+[2026-02-26 15:03:15] [twomoon.redis_ipc   ] [INFO   ] Redis connection pool initialized (smashing-shepherd-30245.upstash.io:6379?ssl_cert_reqs=none)
+[2026-02-26 15:03:15] [twomoon.cogs.leveling] [INFO   ] Leveling online | factions=0 | blocked_ch=0 | blocked_r=0
+[2026-02-26 15:03:15] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.leveling
+[2026-02-26 15:03:15] [twomoon.cog.apostle ] [INFO   ] Compiled 0 moderation rules
+[2026-02-26 15:03:15] [twomoon.cog.apostle ] [INFO   ] Apostle cog loaded | compiled_rules=0 | max_concurrent=10
+[2026-02-26 15:03:15] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.apostle
+[2026-02-26 15:03:15] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 15:03:15] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:03:15] [twomoon.cog.faction ] [INFO   ] Faction configs hydrated: [] | friend_promo_days=7
+[2026-02-26 15:03:15] [twomoon.cog.faction ] [INFO   ] Faction cog loaded
+[2026-02-26 15:03:15] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.faction
+[2026-02-26 15:03:15] [twomoon.cog.vouch   ] [INFO   ] Vouch cog loaded
+[2026-02-26 15:03:15] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.vouch
+[2026-02-26 15:03:16] [twomoon.core_node_win] [INFO   ] Slash commands synced to guild 1452886736874111009
+[2026-02-26 15:03:16] [twomoon.core_node_win] [INFO   ] Setup complete: type=CORE_NODE | guild=1452886736874111009 | cogs=4 | config_keys=0
+[2026-02-26 15:03:19] [twomoon.core_node_win] [INFO   ] Core Node ONLINE | Apostle#3338 | Guilds: 1 | Latency: 297ms
+[2026-02-26 15:04:06] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:04:09] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:04:09] [twomoon.core_node_win] [INFO   ] [IPC] Shutdown command received (reason=agent_terminate)
+[2026-02-26 15:04:09] [twomoon.core_node_win] [INFO   ] IPC-triggered shutdown: calling bot.close()
+[2026-02-26 15:04:09] [twomoon.core_node_win] [INFO   ] Graceful shutdown initiated for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:04:09] [twomoon.cogs.leveling] [WARNING] Emergency flush — 0 buffer entries pending
+[2026-02-26 15:04:09] [twomoon.core_node_win] [INFO   ] Emergency flush OK: Leveling
+[2026-02-26 15:04:09] [twomoon.core_node_win] [INFO   ] Local IPC server stopped
+[2026-02-26 15:04:09] [twomoon.redis_ipc   ] [INFO   ] Listener loop exited for 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:04:09] [twomoon.redis_ipc   ] [INFO   ] Unsubscribed from 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:04:13] [twomoon.redis_ipc   ] [INFO   ] Listener loop exited for 'events:settings:1452886736874111009'
+[2026-02-26 15:04:13] [twomoon.redis_ipc   ] [INFO   ] Unsubscribed from 'events:settings:1452886736874111009'
+[2026-02-26 15:04:13] [twomoon.redis_ipc   ] [INFO   ] All subscriptions terminated (2 channels)
+[2026-02-26 15:04:13] [twomoon.redis_ipc   ] [INFO   ] Redis connection pool closed
+[2026-02-26 15:04:13] [twomoon.redis_ipc   ] [INFO   ] Redis IPC fully shut down
+[2026-02-26 15:04:13] [twomoon.database    ] [INFO   ] CockroachDB connection pool closed
+[2026-02-26 15:04:13] [twomoon.cogs.leveling] [WARNING] Emergency flush — 0 buffer entries pending
+[2026-02-26 15:04:13] [twomoon.cog.apostle ] [INFO   ] Apostle cog unloaded | analyzed=0 | caught=0
+[2026-02-26 15:04:14] [twomoon.core_node_win] [INFO   ] Core Node shutdown complete for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:04:14] [twomoon.core_node_win] [INFO   ] Process exiting for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:11:23] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 15:11:23] [twomoon.core_node_win] [INFO   ]   Core Node bootstrapping · bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:11:23] [twomoon.core_node_win] [INFO   ]   Python=3.13.12 · Platform=win32
+[2026-02-26 15:11:23] [twomoon.core_node_win] [INFO   ]   GC thresholds: (300, 8, 8)
+[2026-02-26 15:11:23] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 15:11:24] [twomoon.core_node_win] [INFO   ] CockroachDB pool ready (min=1, max=3, stmt_cache=0, bot=365e232f)
+[2026-02-26 15:11:24] [discord.client      ] [WARNING] PyNaCl is not installed, voice will NOT be supported
+[2026-02-26 15:11:33] [twomoon.core_node_win] [INFO   ] Setup hook initiated for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:11:33] [twomoon.core_node_win] [INFO   ] Local IPC server listening on 127.0.0.1:61074 (port file: D:\BotDiscord\PROJECT-TwoMoon\.ipc\365e232f-569b-4afe-948e-b50aa380e030.port)
+[2026-02-26 15:11:33] [twomoon.core_node_win] [INFO   ] Identity loaded: type=CORE_NODE guild=1452886736874111009
+[2026-02-26 15:11:34] [twomoon.core_node_win] [INFO   ] Config hydrated: 0 keys (updated_at=N/A)
+[2026-02-26 15:11:34] [twomoon.core_node_win] [INFO   ] Moderation rules hydrated: 0 active rules
+[2026-02-26 15:11:34] [twomoon.core_node_win] [INFO   ] Redis IPC listeners active
+[2026-02-26 15:11:36] [twomoon.redis_ipc   ] [INFO   ] Redis connection pool initialized (smashing-shepherd-30245.upstash.io:6379?ssl_cert_reqs=none)
+[2026-02-26 15:11:38] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 15:11:38] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:11:39] [twomoon.cogs.leveling] [INFO   ] Leveling online | factions=0 | blocked_ch=0 | blocked_r=0
+[2026-02-26 15:11:39] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.leveling
+[2026-02-26 15:11:39] [twomoon.cog.apostle ] [INFO   ] Compiled 0 moderation rules
+[2026-02-26 15:11:39] [twomoon.cog.apostle ] [INFO   ] Apostle cog loaded | compiled_rules=0 | max_concurrent=10
+[2026-02-26 15:11:39] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.apostle
+[2026-02-26 15:11:39] [twomoon.cog.faction ] [INFO   ] Faction configs hydrated: [] | friend_promo_days=7
+[2026-02-26 15:11:39] [twomoon.cog.faction ] [INFO   ] Faction cog loaded
+[2026-02-26 15:11:39] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.faction
+[2026-02-26 15:11:40] [twomoon.cog.vouch   ] [INFO   ] Vouch cog loaded
+[2026-02-26 15:11:40] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.vouch
+[2026-02-26 15:11:40] [twomoon.core_node_win] [INFO   ] Slash commands synced to guild 1452886736874111009
+[2026-02-26 15:11:40] [twomoon.core_node_win] [INFO   ] Setup complete: type=CORE_NODE | guild=1452886736874111009 | cogs=4 | config_keys=0
+[2026-02-26 15:11:44] [twomoon.core_node_win] [INFO   ] Core Node ONLINE | Apostle#3338 | Guilds: 1 | Latency: 254ms
+[2026-02-26 15:12:09] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:12:11] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:12:37] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 2.0s (attempt 2)
+[2026-02-26 15:12:37] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 2.0s (attempt 2)
+[2026-02-26 15:12:39] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:12:39] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 15:13:04] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:13:04] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:13:07] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:13:07] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 15:13:31] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:13:31] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:13:32] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 15:13:33] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:14:53] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:14:56] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:15:07] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:15:08] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 2.0s (attempt 2)
+[2026-02-26 15:15:10] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 15:15:40] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:15:55] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:16:01] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 2.0s (attempt 2)
+[2026-02-26 15:16:21] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 2.0s (attempt 2)
+[2026-02-26 15:16:31] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 4.0s (attempt 3)
+[2026-02-26 15:16:49] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 15:16:52] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 4.0s (attempt 3)
+[2026-02-26 15:17:03] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:18:15] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:18:16] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:18:54] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:18:56] [twomoon.core_node_win] [INFO   ] [IPC] Shutdown command received (reason=agent_terminate)
+[2026-02-26 15:18:56] [twomoon.core_node_win] [INFO   ] IPC-triggered shutdown: calling bot.close()
+[2026-02-26 15:18:56] [twomoon.core_node_win] [INFO   ] Graceful shutdown initiated for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:18:56] [twomoon.cogs.leveling] [WARNING] Emergency flush — 0 buffer entries pending
+[2026-02-26 15:18:56] [twomoon.core_node_win] [INFO   ] Emergency flush OK: Leveling
+[2026-02-26 15:18:56] [twomoon.core_node_win] [INFO   ] Local IPC server stopped
+[2026-02-26 15:19:06] [twomoon.redis_ipc   ] [INFO   ] Listener loop exited for 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:19:06] [twomoon.redis_ipc   ] [INFO   ] Unsubscribed from 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:19:50] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 15:19:50] [twomoon.core_node_win] [INFO   ]   Core Node bootstrapping · bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:19:50] [twomoon.core_node_win] [INFO   ]   Python=3.13.12 · Platform=win32
+[2026-02-26 15:19:50] [twomoon.core_node_win] [INFO   ]   GC thresholds: (300, 8, 8)
+[2026-02-26 15:19:50] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 15:19:50] [twomoon.core_node_win] [INFO   ] CockroachDB pool ready (min=1, max=3, stmt_cache=0, bot=365e232f)
+[2026-02-26 15:19:50] [discord.client      ] [WARNING] PyNaCl is not installed, voice will NOT be supported
+[2026-02-26 15:20:04] [twomoon.core_node_win] [INFO   ] Setup hook initiated for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:20:04] [twomoon.core_node_win] [INFO   ] Local IPC server listening on 127.0.0.1:61397 (port file: D:\BotDiscord\PROJECT-TwoMoon\.ipc\365e232f-569b-4afe-948e-b50aa380e030.port)
+[2026-02-26 15:20:04] [twomoon.core_node_win] [INFO   ] Identity loaded: type=CORE_NODE guild=1452886736874111009
+[2026-02-26 15:20:05] [twomoon.core_node_win] [INFO   ] Config hydrated: 0 keys (updated_at=N/A)
+[2026-02-26 15:20:06] [twomoon.core_node_win] [INFO   ] Moderation rules hydrated: 0 active rules
+[2026-02-26 15:20:06] [twomoon.core_node_win] [INFO   ] Redis IPC listeners active
+[2026-02-26 15:20:06] [twomoon.cogs.leveling] [INFO   ] Leveling online | factions=0 | blocked_ch=0 | blocked_r=0
+[2026-02-26 15:20:06] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.leveling
+[2026-02-26 15:20:06] [twomoon.cog.apostle ] [INFO   ] Compiled 0 moderation rules
+[2026-02-26 15:20:06] [twomoon.cog.apostle ] [INFO   ] Apostle cog loaded | compiled_rules=0 | max_concurrent=10
+[2026-02-26 15:20:06] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.apostle
+[2026-02-26 15:20:07] [twomoon.cog.faction ] [INFO   ] Faction configs hydrated: [] | friend_promo_days=7
+[2026-02-26 15:20:07] [twomoon.cog.faction ] [INFO   ] Faction cog loaded
+[2026-02-26 15:20:07] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.faction
+[2026-02-26 15:20:07] [twomoon.cog.vouch   ] [INFO   ] Vouch cog loaded
+[2026-02-26 15:20:07] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.vouch
+[2026-02-26 15:20:07] [twomoon.core_node_win] [INFO   ] Slash commands synced to guild 1452886736874111009
+[2026-02-26 15:20:07] [twomoon.core_node_win] [INFO   ] Setup complete: type=CORE_NODE | guild=1452886736874111009 | cogs=4 | config_keys=0
+[2026-02-26 15:20:08] [twomoon.redis_ipc   ] [INFO   ] Redis connection pool initialized (smashing-shepherd-30245.upstash.io:6379?ssl_cert_reqs=none)
+[2026-02-26 15:20:08] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 15:20:08] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:20:11] [twomoon.core_node_win] [INFO   ] Core Node ONLINE | Apostle#3338 | Guilds: 1 | Latency: 280ms
+[2026-02-26 15:20:38] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:20:39] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:20:39] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 15:20:41] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:22:09] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:22:10] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:22:39] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:22:40] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 15:23:20] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:23:36] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:23:41] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 2.0s (attempt 2)
+[2026-02-26 15:24:03] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 2.0s (attempt 2)
+[2026-02-26 15:24:13] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (ConnectionError). Reconnecting in 4.0s (attempt 3)
+[2026-02-26 15:24:44] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 4.0s (attempt 3)
+[2026-02-26 15:24:47] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 8.0s (attempt 4)
+[2026-02-26 15:24:48] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 15:25:15] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 16.0s (attempt 5)
+[2026-02-26 15:25:17] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:25:20] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 15:25:33] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:26:04] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:26:05] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:26:28] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:26:29] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:26:29] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:26:30] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 15:26:51] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:26:52] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:27:03] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 15:27:12] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:27:12] [twomoon.core_node_win] [INFO   ] [IPC] Shutdown command received (reason=agent_terminate)
+[2026-02-26 15:27:12] [twomoon.core_node_win] [INFO   ] IPC-triggered shutdown: calling bot.close()
+[2026-02-26 15:27:12] [twomoon.core_node_win] [INFO   ] Graceful shutdown initiated for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:27:12] [twomoon.cogs.leveling] [WARNING] Emergency flush — 0 buffer entries pending
+[2026-02-26 15:27:12] [twomoon.core_node_win] [INFO   ] Emergency flush OK: Leveling
+[2026-02-26 15:27:12] [twomoon.core_node_win] [INFO   ] Local IPC server stopped
+[2026-02-26 15:27:12] [twomoon.redis_ipc   ] [INFO   ] Listener loop exited for 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:27:12] [twomoon.redis_ipc   ] [INFO   ] Unsubscribed from 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:27:13] [twomoon.redis_ipc   ] [INFO   ] Listener loop exited for 'events:settings:1452886736874111009'
+[2026-02-26 15:27:13] [twomoon.redis_ipc   ] [INFO   ] Unsubscribed from 'events:settings:1452886736874111009'
+[2026-02-26 15:27:13] [twomoon.redis_ipc   ] [INFO   ] All subscriptions terminated (2 channels)
+[2026-02-26 15:27:13] [twomoon.redis_ipc   ] [INFO   ] Redis connection pool closed
+[2026-02-26 15:27:13] [twomoon.redis_ipc   ] [INFO   ] Redis IPC fully shut down
+[2026-02-26 15:27:13] [twomoon.database    ] [INFO   ] CockroachDB connection pool closed
+[2026-02-26 15:27:13] [twomoon.cogs.leveling] [WARNING] Emergency flush — 0 buffer entries pending
+[2026-02-26 15:27:13] [twomoon.cog.apostle ] [INFO   ] Apostle cog unloaded | analyzed=0 | caught=0
+[2026-02-26 15:27:13] [twomoon.core_node_win] [INFO   ] Core Node shutdown complete for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:27:13] [twomoon.core_node_win] [INFO   ] Process exiting for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:44:01] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 15:44:01] [twomoon.core_node_win] [INFO   ]   Core Node bootstrapping · bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:44:01] [twomoon.core_node_win] [INFO   ]   Python=3.13.12 · Platform=win32
+[2026-02-26 15:44:01] [twomoon.core_node_win] [INFO   ]   GC thresholds: (300, 8, 8)
+[2026-02-26 15:44:01] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 15:44:02] [twomoon.core_node_win] [INFO   ] CockroachDB pool ready (min=1, max=3, stmt_cache=0, bot=365e232f)
+[2026-02-26 15:44:02] [discord.client      ] [WARNING] PyNaCl is not installed, voice will NOT be supported
+[2026-02-26 15:44:03] [twomoon.core_node_win] [INFO   ] Setup hook initiated for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:44:03] [twomoon.core_node_win] [INFO   ] Local IPC server listening on 127.0.0.1:57345 (port file: D:\BotDiscord\PROJECT-TwoMoon\.ipc\365e232f-569b-4afe-948e-b50aa380e030.port)
+[2026-02-26 15:44:03] [twomoon.core_node_win] [INFO   ] Identity loaded: type=CORE_NODE guild=1452886736874111009
+[2026-02-26 15:44:04] [twomoon.core_node_win] [INFO   ] Config hydrated: 0 keys (updated_at=N/A)
+[2026-02-26 15:44:04] [twomoon.core_node_win] [INFO   ] Moderation rules hydrated: 0 active rules
+[2026-02-26 15:44:04] [twomoon.core_node_win] [INFO   ] Redis IPC listeners active
+[2026-02-26 15:44:05] [twomoon.cogs.leveling] [INFO   ] Leveling online | factions=0 | blocked_ch=0 | blocked_r=0
+[2026-02-26 15:44:05] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.leveling
+[2026-02-26 15:44:05] [twomoon.cog.apostle ] [INFO   ] Compiled 0 moderation rules
+[2026-02-26 15:44:05] [twomoon.cog.apostle ] [INFO   ] Apostle cog loaded | compiled_rules=0 | max_concurrent=10
+[2026-02-26 15:44:05] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.apostle
+[2026-02-26 15:44:05] [twomoon.cog.faction ] [INFO   ] Faction configs hydrated: [] | friend_promo_days=7
+[2026-02-26 15:44:05] [twomoon.cog.faction ] [INFO   ] Faction cog loaded
+[2026-02-26 15:44:05] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.faction
+[2026-02-26 15:44:05] [twomoon.cog.vouch   ] [INFO   ] Vouch cog loaded
+[2026-02-26 15:44:05] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.vouch
+[2026-02-26 15:44:05] [twomoon.core_node_win] [INFO   ] Slash commands synced to guild 1452886736874111009
+[2026-02-26 15:44:05] [twomoon.core_node_win] [INFO   ] Setup complete: type=CORE_NODE | guild=1452886736874111009 | cogs=4 | config_keys=0
+[2026-02-26 15:44:09] [twomoon.core_node_win] [INFO   ] Core Node ONLINE | Apostle#3338 | Guilds: 1 | Latency: 363ms
+[2026-02-26 15:44:14] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:44:44] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:44:54] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 2.0s (attempt 2)
+[2026-02-26 15:45:21] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (ConnectionError). Reconnecting in 2.0s (attempt 2)
+[2026-02-26 15:45:31] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 4.0s (attempt 3)
+[2026-02-26 15:46:01] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 4.0s (attempt 3)
+[2026-02-26 15:46:11] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 8.0s (attempt 4)
+[2026-02-26 15:46:41] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 8.0s (attempt 4)
+[2026-02-26 15:46:51] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 16.0s (attempt 5)
+[2026-02-26 15:47:11] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 16.0s (attempt 5)
+[2026-02-26 15:47:31] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 30.0s (attempt 6)
+[2026-02-26 15:47:51] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 30.0s (attempt 6)
+[2026-02-26 15:48:21] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 30.0s (attempt 7)
+[2026-02-26 15:48:41] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 30.0s (attempt 7)
+[2026-02-26 15:49:11] [discord.client      ] [ERROR  ] Attempting a reconnect in 1.89s
+Traceback (most recent call last):
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1562, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1178, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1209, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 939, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\asyncio\tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 1076, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 779, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 734, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1239, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1568, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-c.discord.gg:443 ssl:default [getaddrinfo failed]
+[2026-02-26 15:49:11] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 30.0s (attempt 8)
+[2026-02-26 15:49:31] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 30.0s (attempt 8)
+[2026-02-26 15:49:53] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:50:03] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 15:52:32] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (ConnectionError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:52:32] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (ConnectionError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 15:52:33] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 15:52:33] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:55:29] [twomoon.core_node_win] [INFO   ] [IPC] Shutdown command received (reason=agent_terminate)
+[2026-02-26 15:55:29] [twomoon.core_node_win] [INFO   ] IPC-triggered shutdown: calling bot.close()
+[2026-02-26 15:55:29] [twomoon.core_node_win] [INFO   ] Graceful shutdown initiated for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:55:29] [twomoon.cogs.leveling] [WARNING] Emergency flush — 0 buffer entries pending
+[2026-02-26 15:55:29] [twomoon.core_node_win] [INFO   ] Emergency flush OK: Leveling
+[2026-02-26 15:55:29] [twomoon.core_node_win] [INFO   ] Local IPC server stopped
+[2026-02-26 15:55:29] [twomoon.redis_ipc   ] [INFO   ] Listener loop exited for 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:55:29] [twomoon.redis_ipc   ] [INFO   ] Unsubscribed from 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:55:29] [twomoon.redis_ipc   ] [INFO   ] Listener loop exited for 'events:settings:1452886736874111009'
+[2026-02-26 15:55:29] [twomoon.redis_ipc   ] [INFO   ] Unsubscribed from 'events:settings:1452886736874111009'
+[2026-02-26 15:55:29] [twomoon.redis_ipc   ] [INFO   ] All subscriptions terminated (2 channels)
+[2026-02-26 15:55:29] [twomoon.redis_ipc   ] [INFO   ] Redis connection pool closed
+[2026-02-26 15:55:29] [twomoon.redis_ipc   ] [INFO   ] Redis IPC fully shut down
+[2026-02-26 15:55:29] [twomoon.database    ] [INFO   ] CockroachDB connection pool closed
+[2026-02-26 15:55:29] [twomoon.cogs.leveling] [WARNING] Emergency flush — 0 buffer entries pending
+[2026-02-26 15:55:29] [twomoon.cog.apostle ] [INFO   ] Apostle cog unloaded | analyzed=0 | caught=0
+[2026-02-26 15:55:29] [twomoon.core_node_win] [INFO   ] Core Node shutdown complete for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:55:29] [twomoon.core_node_win] [INFO   ] Process exiting for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:55:34] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 15:55:34] [twomoon.core_node_win] [INFO   ]   Core Node bootstrapping · bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:55:34] [twomoon.core_node_win] [INFO   ]   Python=3.13.12 · Platform=win32
+[2026-02-26 15:55:34] [twomoon.core_node_win] [INFO   ]   GC thresholds: (300, 8, 8)
+[2026-02-26 15:55:34] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 15:55:35] [twomoon.core_node_win] [INFO   ] CockroachDB pool ready (min=1, max=3, stmt_cache=0, bot=365e232f)
+[2026-02-26 15:55:35] [discord.client      ] [WARNING] PyNaCl is not installed, voice will NOT be supported
+[2026-02-26 15:55:36] [twomoon.core_node_win] [INFO   ] Setup hook initiated for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:55:36] [twomoon.core_node_win] [INFO   ] Local IPC server listening on 127.0.0.1:60518 (port file: D:\BotDiscord\PROJECT-TwoMoon\.ipc\365e232f-569b-4afe-948e-b50aa380e030.port)
+[2026-02-26 15:55:36] [twomoon.core_node_win] [INFO   ] Identity loaded: type=CORE_NODE guild=1452886736874111009
+[2026-02-26 15:55:36] [twomoon.core_node_win] [INFO   ] Config hydrated: 0 keys (updated_at=N/A)
+[2026-02-26 15:55:36] [twomoon.core_node_win] [INFO   ] Moderation rules hydrated: 0 active rules
+[2026-02-26 15:55:36] [twomoon.core_node_win] [INFO   ] Redis IPC listeners active
+[2026-02-26 15:55:36] [twomoon.redis_ipc   ] [INFO   ] Redis connection pool initialized (smashing-shepherd-30245.upstash.io:6379?ssl_cert_reqs=none)
+[2026-02-26 15:55:37] [twomoon.cogs.leveling] [INFO   ] Leveling online | factions=0 | blocked_ch=0 | blocked_r=0
+[2026-02-26 15:55:37] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.leveling
+[2026-02-26 15:55:37] [twomoon.cog.apostle ] [INFO   ] Compiled 0 moderation rules
+[2026-02-26 15:55:37] [twomoon.cog.apostle ] [INFO   ] Apostle cog loaded | compiled_rules=0 | max_concurrent=10
+[2026-02-26 15:55:37] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.apostle
+[2026-02-26 15:55:37] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 15:55:37] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:55:37] [twomoon.cog.faction ] [INFO   ] Faction configs hydrated: [] | friend_promo_days=7
+[2026-02-26 15:55:37] [twomoon.cog.faction ] [INFO   ] Faction cog loaded
+[2026-02-26 15:55:37] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.faction
+[2026-02-26 15:55:37] [twomoon.cog.vouch   ] [INFO   ] Vouch cog loaded
+[2026-02-26 15:55:37] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.vouch
+[2026-02-26 15:55:37] [twomoon.core_node_win] [INFO   ] Slash commands synced to guild 1452886736874111009
+[2026-02-26 15:55:37] [twomoon.core_node_win] [INFO   ] Setup complete: type=CORE_NODE | guild=1452886736874111009 | cogs=4 | config_keys=0
+[2026-02-26 15:55:40] [twomoon.core_node_win] [INFO   ] Core Node ONLINE | Apostle#3338 | Guilds: 1 | Latency: 264ms
+[2026-02-26 15:59:06] [twomoon.core_node_win] [INFO   ] [IPC] Shutdown command received (reason=agent_terminate)
+[2026-02-26 15:59:06] [twomoon.core_node_win] [INFO   ] IPC-triggered shutdown: calling bot.close()
+[2026-02-26 15:59:06] [twomoon.core_node_win] [INFO   ] Graceful shutdown initiated for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:59:06] [twomoon.cogs.leveling] [WARNING] Emergency flush — 0 buffer entries pending
+[2026-02-26 15:59:06] [twomoon.core_node_win] [INFO   ] Emergency flush OK: Leveling
+[2026-02-26 15:59:06] [twomoon.core_node_win] [INFO   ] Local IPC server stopped
+[2026-02-26 15:59:06] [twomoon.redis_ipc   ] [INFO   ] Listener loop exited for 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:59:06] [twomoon.redis_ipc   ] [INFO   ] Unsubscribed from 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:59:06] [twomoon.redis_ipc   ] [INFO   ] Listener loop exited for 'events:settings:1452886736874111009'
+[2026-02-26 15:59:06] [twomoon.redis_ipc   ] [INFO   ] Unsubscribed from 'events:settings:1452886736874111009'
+[2026-02-26 15:59:06] [twomoon.redis_ipc   ] [INFO   ] All subscriptions terminated (2 channels)
+[2026-02-26 15:59:06] [twomoon.redis_ipc   ] [INFO   ] Redis connection pool closed
+[2026-02-26 15:59:06] [twomoon.redis_ipc   ] [INFO   ] Redis IPC fully shut down
+[2026-02-26 15:59:06] [twomoon.database    ] [INFO   ] CockroachDB connection pool closed
+[2026-02-26 15:59:06] [twomoon.cogs.leveling] [WARNING] Emergency flush — 0 buffer entries pending
+[2026-02-26 15:59:06] [twomoon.cog.apostle ] [INFO   ] Apostle cog unloaded | analyzed=1 | caught=0
+[2026-02-26 15:59:06] [twomoon.core_node_win] [INFO   ] Core Node shutdown complete for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:59:06] [twomoon.core_node_win] [INFO   ] Process exiting for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:59:14] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 15:59:14] [twomoon.core_node_win] [INFO   ]   Core Node bootstrapping · bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:59:14] [twomoon.core_node_win] [INFO   ]   Python=3.13.12 · Platform=win32
+[2026-02-26 15:59:14] [twomoon.core_node_win] [INFO   ]   GC thresholds: (300, 8, 8)
+[2026-02-26 15:59:14] [twomoon.core_node_win] [INFO   ] ================================================================
+[2026-02-26 15:59:14] [twomoon.core_node_win] [INFO   ] CockroachDB pool ready (min=1, max=3, stmt_cache=0, bot=365e232f)
+[2026-02-26 15:59:14] [discord.client      ] [WARNING] PyNaCl is not installed, voice will NOT be supported
+[2026-02-26 15:59:15] [twomoon.core_node_win] [INFO   ] Setup hook initiated for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 15:59:15] [twomoon.core_node_win] [INFO   ] Local IPC server listening on 127.0.0.1:60770 (port file: D:\BotDiscord\PROJECT-TwoMoon\.ipc\365e232f-569b-4afe-948e-b50aa380e030.port)
+[2026-02-26 15:59:15] [twomoon.core_node_win] [INFO   ] Identity loaded: type=CORE_NODE guild=1452886736874111009
+[2026-02-26 15:59:15] [twomoon.core_node_win] [INFO   ] Config hydrated: 0 keys (updated_at=N/A)
+[2026-02-26 15:59:15] [twomoon.core_node_win] [INFO   ] Moderation rules hydrated: 0 active rules
+[2026-02-26 15:59:15] [twomoon.core_node_win] [INFO   ] Redis IPC listeners active
+[2026-02-26 15:59:15] [twomoon.redis_ipc   ] [INFO   ] Redis connection pool initialized (smashing-shepherd-30245.upstash.io:6379?ssl_cert_reqs=none)
+[2026-02-26 15:59:15] [twomoon.cogs.leveling] [INFO   ] Leveling online | factions=0 | blocked_ch=0 | blocked_r=0
+[2026-02-26 15:59:15] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.leveling
+[2026-02-26 15:59:15] [twomoon.cog.apostle ] [INFO   ] Compiled 0 moderation rules
+[2026-02-26 15:59:15] [twomoon.cog.apostle ] [INFO   ] Apostle cog loaded | compiled_rules=0 | max_concurrent=10
+[2026-02-26 15:59:15] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.apostle
+[2026-02-26 15:59:15] [twomoon.cog.faction ] [INFO   ] Faction configs hydrated: [] | friend_promo_days=7
+[2026-02-26 15:59:15] [twomoon.cog.faction ] [INFO   ] Faction cog loaded
+[2026-02-26 15:59:15] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.faction
+[2026-02-26 15:59:16] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 15:59:16] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 15:59:16] [twomoon.cog.vouch   ] [INFO   ] Vouch cog loaded
+[2026-02-26 15:59:16] [twomoon.core_node_win] [INFO   ] Cog loaded: core_node.cogs.vouch
+[2026-02-26 15:59:16] [twomoon.core_node_win] [INFO   ] Slash commands synced to guild 1452886736874111009
+[2026-02-26 15:59:16] [twomoon.core_node_win] [INFO   ] Setup complete: type=CORE_NODE | guild=1452886736874111009 | cogs=4 | config_keys=0
+[2026-02-26 15:59:19] [twomoon.core_node_win] [INFO   ] Core Node ONLINE | Apostle#3338 | Guilds: 1 | Latency: 265ms
+[2026-02-26 16:01:07] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 16:01:07] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 16:01:09] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 16:01:09] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 16:11:47] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 16:11:47] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 16:11:49] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (ConnectionError). Reconnecting in 2.0s (attempt 2)
+[2026-02-26 16:11:49] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (ConnectionError). Reconnecting in 2.0s (attempt 2)
+[2026-02-26 16:11:51] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (ConnectionError). Reconnecting in 4.0s (attempt 3)
+[2026-02-26 16:11:51] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (ConnectionError). Reconnecting in 4.0s (attempt 3)
+[2026-02-26 16:11:58] [discord.client      ] [ERROR  ] Attempting a reconnect in 0.79s
+Traceback (most recent call last):
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1562, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1178, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1209, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 939, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\asyncio\tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 1076, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 779, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 734, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1239, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1568, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [getaddrinfo failed]
+[2026-02-26 16:11:59] [discord.client      ] [ERROR  ] Attempting a reconnect in 0.03s
+Traceback (most recent call last):
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1562, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1178, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1209, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 939, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\asyncio\tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 1076, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 779, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 734, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1239, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1568, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [getaddrinfo failed]
+[2026-02-26 16:11:59] [discord.client      ] [ERROR  ] Attempting a reconnect in 0.59s
+Traceback (most recent call last):
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1562, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1178, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1209, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 939, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\asyncio\tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 1076, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 779, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 734, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1239, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1568, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [getaddrinfo failed]
+[2026-02-26 16:11:59] [discord.client      ] [ERROR  ] Attempting a reconnect in 14.61s
+Traceback (most recent call last):
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1562, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1178, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1209, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 939, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\asyncio\tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 1076, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 779, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 734, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1239, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1568, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [getaddrinfo failed]
+[2026-02-26 16:12:00] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (ConnectionError). Reconnecting in 8.0s (attempt 4)
+[2026-02-26 16:12:00] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (ConnectionError). Reconnecting in 8.0s (attempt 4)
+[2026-02-26 16:12:08] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (ConnectionError). Reconnecting in 16.0s (attempt 5)
+[2026-02-26 16:12:08] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (ConnectionError). Reconnecting in 16.0s (attempt 5)
+[2026-02-26 16:12:14] [discord.client      ] [ERROR  ] Attempting a reconnect in 4.95s
+Traceback (most recent call last):
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1562, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1178, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1209, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 939, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\asyncio\tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 1076, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 779, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 734, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1239, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1568, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [getaddrinfo failed]
+[2026-02-26 16:12:19] [discord.client      ] [ERROR  ] Attempting a reconnect in 53.33s
+Traceback (most recent call last):
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1562, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1178, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1209, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 939, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\asyncio\tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 1076, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 779, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 734, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1239, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1568, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [getaddrinfo failed]
+[2026-02-26 16:12:46] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 30.0s (attempt 6)
+[2026-02-26 16:12:56] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (ConnectionError). Reconnecting in 30.0s (attempt 6)
+[2026-02-26 16:13:24] [discord.client      ] [ERROR  ] Attempting a reconnect in 94.16s
+Traceback (most recent call last):
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1562, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1178, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1209, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 939, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\asyncio\tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 1076, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 779, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 734, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1239, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1568, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-d.discord.gg:443 ssl:default [getaddrinfo failed]
+[2026-02-26 16:13:38] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 30.0s (attempt 7)
+[2026-02-26 16:13:40] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (ConnectionError). Reconnecting in 30.0s (attempt 7)
+[2026-02-26 16:14:38] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 30.0s (attempt 8)
+[2026-02-26 16:14:48] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 30.0s (attempt 8)
+[2026-02-26 16:15:38] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 30.0s (attempt 9)
+[2026-02-26 16:15:48] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 30.0s (attempt 9)
+[2026-02-26 16:15:59] [discord.client      ] [ERROR  ] Attempting a reconnect in 227.00s
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\asyncio\tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\gateway.py", line 383, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\http.py", line 566, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 1076, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 779, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\client.py", line 734, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1239, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1580, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohttp\connector.py", line 1298, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohappyeyeballs\impl.py", line 87, in start_connection
+    sock, _, _ = await _staggered.staggered_race(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<13 lines>...
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohappyeyeballs\_staggered.py", line 165, in staggered_race
+    done = await _wait_one(
+           ^^^^^^^^^^^^^^^^
+        (*tasks, start_next) if start_next else tasks, loop
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\aiohappyeyeballs\_staggered.py", line 46, in _wait_one
+    return await wait_next
+           ^^^^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\tarta\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\discord\client.py", line 724, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\asyncio\tasks.py", line 506, in wait_for
+    async with timeouts.timeout(timeout):
+               ~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3312.0_x64__qbz5n2kfra8p0\Lib\asyncio\timeouts.py", line 116, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+[2026-02-26 16:16:08] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 16:16:21] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 16:16:21] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 16:16:35] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:settings:1452886736874111009' (TimeoutError). Reconnecting in 2.0s (attempt 2)
+[2026-02-26 16:16:35] [twomoon.redis_ipc   ] [WARNING] Redis connection lost on 'events:config:365e232f-569b-4afe-948e-b50aa380e030' (TimeoutError). Reconnecting in 1.0s (attempt 1)
+[2026-02-26 16:16:44] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 16:16:45] [twomoon.redis_ipc   ] [INFO   ] Subscribed to 'events:settings:1452886736874111009'
+[2026-02-26 16:19:54] [twomoon.core_node_win] [INFO   ] Core Node ONLINE | Apostle#3338 | Guilds: 1 | Latency: 5005ms
+[2026-02-26 16:26:16] [twomoon.core_node_win] [INFO   ] [IPC] Shutdown command received (reason=agent_terminate)
+[2026-02-26 16:26:16] [twomoon.core_node_win] [INFO   ] IPC-triggered shutdown: calling bot.close()
+[2026-02-26 16:26:16] [twomoon.core_node_win] [INFO   ] Graceful shutdown initiated for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 16:26:16] [twomoon.cogs.leveling] [WARNING] Emergency flush — 0 buffer entries pending
+[2026-02-26 16:26:16] [twomoon.core_node_win] [INFO   ] Emergency flush OK: Leveling
+[2026-02-26 16:26:16] [twomoon.core_node_win] [INFO   ] Local IPC server stopped
+[2026-02-26 16:26:16] [twomoon.redis_ipc   ] [INFO   ] Listener loop exited for 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 16:26:16] [twomoon.redis_ipc   ] [INFO   ] Unsubscribed from 'events:config:365e232f-569b-4afe-948e-b50aa380e030'
+[2026-02-26 16:26:16] [twomoon.redis_ipc   ] [INFO   ] Listener loop exited for 'events:settings:1452886736874111009'
+[2026-02-26 16:26:16] [twomoon.redis_ipc   ] [INFO   ] Unsubscribed from 'events:settings:1452886736874111009'
+[2026-02-26 16:26:16] [twomoon.redis_ipc   ] [INFO   ] All subscriptions terminated (2 channels)
+[2026-02-26 16:26:16] [twomoon.redis_ipc   ] [INFO   ] Redis connection pool closed
+[2026-02-26 16:26:16] [twomoon.redis_ipc   ] [INFO   ] Redis IPC fully shut down
+[2026-02-26 16:26:16] [twomoon.database    ] [INFO   ] CockroachDB connection pool closed
+[2026-02-26 16:26:16] [twomoon.cogs.leveling] [WARNING] Emergency flush — 0 buffer entries pending
+[2026-02-26 16:26:16] [twomoon.cog.apostle ] [INFO   ] Apostle cog unloaded | analyzed=1 | caught=0
+[2026-02-26 16:26:16] [twomoon.core_node_win] [INFO   ] Core Node shutdown complete for bot_id=365e232f-569b-4afe-948e-b50aa380e030
+[2026-02-26 16:26:16] [twomoon.core_node_win] [INFO   ] Process exiting for bot_id=365e232f-569b-4afe-948e-b50aa380e030
